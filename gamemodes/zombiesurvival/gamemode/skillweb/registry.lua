@@ -702,7 +702,7 @@ end)
 GM:SetSkillModifierFunction(SKILLMOD_DEPLOYSPEED_MUL, function(pl, amount)
 	pl.DeploySpeedMultiplier = math.Clamp(amount + 1.0, 0.05, 100.0)
 
-	for _, wep in pairs(pl:GetWeapons()) do
+	for _, wep in ipairs(pl:GetWeapons()) do
 		GAMEMODE:DoChangeDeploySpeed(wep)
 	end
 end)

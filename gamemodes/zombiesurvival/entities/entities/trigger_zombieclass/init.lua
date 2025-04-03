@@ -42,7 +42,7 @@ function ENT:KeyValue(key, value)
 			self.OnlyWhenClass[1] = -1
 		else
 			self.OnlyWhenClass[1] = -1
-			for i, allowed_class in pairs(string.Explode(",", string.lower(value))) do
+			for i, allowed_class in ipairs(string.Explode(",", string.lower(value))) do
 				for k, v in ipairs(GAMEMODE.ZombieClasses) do
 					if string.lower(v.Name) == allowed_class then
 						self.OnlyWhenClass[i] = k

@@ -48,7 +48,7 @@ end
 
 timer.Create("checkfriend", 5, 0, function()
 	-- This probably isn't the fastest function in the world so I cache it.
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		pl.m_IsFriend = pl:GetFriendStatus() == "friend"
 	end
 end)
@@ -63,7 +63,7 @@ end
 
 if not meta.HasWeapon then
 	function meta:HasWeapon(class)
-		for _, wep in pairs(self:GetWeapons()) do
+		for _, wep in ipairs(self:GetWeapons()) do
 			if wep:GetClass() == class then return true end
 		end
 

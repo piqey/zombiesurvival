@@ -41,7 +41,7 @@ function SWEP:BuildingThink()
 	local uid = owner:UniqueID()
 	local count = 0
 	local personal_count = 0
-	for _, ent in pairs(ents.FindByClass("prop_creepernest")) do
+	for _, ent in ipairs(ents.FindByClass("prop_creepernest")) do
 		if ent.OwnerUID == uid then
 			personal_count = personal_count + 1
 		end
@@ -93,14 +93,14 @@ function SWEP:BuildingThink()
 		Vector(17, 17, 64),
 		Vector(-17, -17, 64)
 	}
-	for _, spos in pairs(spawnpositions) do
+	for _, spos in ipairs(spawnpositions) do
 		if bit.band(util.PointContents(hitpos + spos), CONTENTS_SOLID) == CONTENTS_SOLID then
 			self:SendMessage("not_enough_room_for_a_nest")
 			return
 		end
 	end
 
-	for _, ent in pairs(team.GetValidSpawnPoint(TEAM_UNDEAD)) do
+	for _, ent in ipairs(team.GetValidSpawnPoint(TEAM_UNDEAD)) do
 		if ent.Disabled then continue end
 
 		if util.SkewedDistance(ent:GetPos(), hitpos, 1.5) < GAMEMODE.CreeperNestDistBuildZSpawn then
@@ -110,14 +110,14 @@ function SWEP:BuildingThink()
 	end
 
 	-- See if there's a nest nearby.
-	for _, ent in pairs(ents.FindByClass("prop_creepernest")) do
+	for _, ent in ipairs(ents.FindByClass("prop_creepernest")) do
 		if util.SkewedDistance(ent:GetPos(), hitpos, 1.5) <= GAMEMODE.CreeperNestDistBuildNest then
 			self:SendMessage("too_close_to_another_nest")
 			return
 		end
 	end
 
-	for _, sigil in pairs(ents.FindByClass("prop_obj_sigil")) do
+	for _, sigil in ipairs(ents.FindByClass("prop_obj_sigil")) do
 		if sigil:GetSigilCorrupted() then continue end
 
 		if util.SkewedDistance(sigil:GetPos(), hitpos, 1.5) <= GAMEMODE.CreeperNestDistBuildNest then
@@ -126,7 +126,7 @@ function SWEP:BuildingThink()
 		end
 	end
 
-	for _, human in pairs(team.GetPlayers(TEAM_HUMAN)) do
+	for _, human in ipairs(team.GetPlayers(TEAM_HUMAN)) do
 		if util.SkewedDistance(human:GetPos(), hitpos, 1.5) <= GAMEMODE.CreeperNestDistBuild then
 			self:SendMessage("too_close_to_a_human")
 			return
@@ -172,7 +172,7 @@ function SWEP:BuildNest(ent)
 		ent:EmitSound("physics/flesh/flesh_bloody_break.wav")
 
 		local name = self:GetOwner():Name()
-		for _, pl in pairs(team.GetPlayers(TEAM_UNDEAD)) do
+		for _, pl in ipairs(team.GetPlayers(TEAM_UNDEAD)) do
 			pl:CenterNotify(COLOR_GREEN, translate.ClientFormat(pl, "nest_built_by_x", name))
 		end
 

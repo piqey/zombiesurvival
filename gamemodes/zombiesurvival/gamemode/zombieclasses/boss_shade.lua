@@ -153,7 +153,7 @@ if SERVER then
 				if status and status:IsValid() then
 					status:SetStateEndTime(curtime + 0.5)
 
-					for _, ent in pairs(ents.FindByClass("env_shadecontrol")) do
+					for _, ent in ipairs(ents.FindByClass("env_shadecontrol")) do
 						if ent:IsValid() and ent:GetOwner() == pl then
 							ent:Remove()
 							return
@@ -176,7 +176,7 @@ CLASS.IconColor = Color(0, 50, 255)
 
 local ToZero = {"ValveBiped.Bip01_L_Thigh", "ValveBiped.Bip01_R_Thigh", "ValveBiped.Bip01_L_Calf", "ValveBiped.Bip01_R_Calf", "ValveBiped.Bip01_L_Foot", "ValveBiped.Bip01_R_Foot"}
 function CLASS:BuildBonePositions(pl)
-	for _, bonename in pairs(ToZero) do
+	for _, bonename in ipairs(ToZero) do
 		local boneid = pl:LookupBone(bonename)
 		if boneid and boneid > 0 then
 			pl:ManipulateBoneScale(boneid, vector_tiny)

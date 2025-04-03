@@ -127,7 +127,7 @@ local BonesToZero = {
 	"ValveBiped.Bip01_R_Finger32"
 }
 function CLASS:BuildBonePositions(pl)
-	for _, bone in pairs(BonesToZero) do
+	for _, bone in ipairs(BonesToZero) do
 		local boneid = pl:LookupBone(bone)
 		if boneid and boneid > 0 then
 			pl:ManipulateBoneScale(boneid, vector_tiny)

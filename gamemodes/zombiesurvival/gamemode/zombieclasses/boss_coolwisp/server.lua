@@ -6,7 +6,7 @@ function CLASS:OnKilled(pl, attacker, inflictor, suicide, headshot, dmginfo)
 		pl:GodEnable()
 		util.BlastDamageEx(pl:GetActiveWeapon() or NULL, pl, pl:GetPos(), 100, 35, DMG_DROWN)
 		pl:GodDisable()
-		for _, ent in pairs(util.BlastAlloc(pl:GetActiveWeapon() or NULL, pl, pl:GetPos(), 100)) do
+		for _, ent in ipairs(util.BlastAlloc(pl:GetActiveWeapon() or NULL, pl, pl:GetPos(), 100)) do
 			if ent:IsValidLivingPlayer() and gamemode.Call("PlayerShouldTakeDamage", ent, pl) and ent ~= pl then
 				ent:GiveStatus("frost", 8)
 				ent:AddLegDamage(24)

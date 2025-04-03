@@ -40,7 +40,7 @@ function SWEP:PrimaryAttack()
 		owner:SendLua("util.WhiteOut(0.25)")
 
 		local statuses = {"enfeeble", "slow", "dimvision", "frost"}
-		for _, status in pairs(statuses) do
+		for _, status in ipairs(statuses) do
 			if owner:GetStatus(status) then
 				owner:RemoveStatus(status)
 			end

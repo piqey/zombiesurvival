@@ -59,7 +59,7 @@ end
 
 local function CheckoutDoClick(self)
 	local tobuy = {}
-	for _, btn in pairs(WorthButtons) do
+	for _, btn in ipairs(WorthButtons) do
 		if btn and btn.On and btn.ID then
 			table.insert(tobuy, btn.ID)
 		end
@@ -101,7 +101,7 @@ end
 
 local function ClickWorthButton(id)
 	local result = true
-	for _, btn in pairs(WorthButtons) do
+	for _, btn in ipairs(WorthButtons) do
 		if not btn then continue end
 
 		if btn.ID == id or btn.Signature == id then
@@ -137,7 +137,7 @@ end
 
 local function SaveCurrentCart(name)
 	local tobuy = {}
-	for _, btn in pairs(WorthButtons) do
+	for _, btn in ipairs(WorthButtons) do
 		if btn and btn.On and btn.ID then
 			table.insert(tobuy, FindStartingItem(btn.ID).Signature)
 		end

@@ -56,7 +56,7 @@ function ENT:Hit(vHitPos, vHitNormal, eHitEntity)
 		if eHitEntity.FizzleStatusAOE then return end
 	end
 
-	for _, ent in pairs(util.BlastAlloc(self, owner, vHitPos, 128)) do
+	for _, ent in ipairs(util.BlastAlloc(self, owner, vHitPos, 128)) do
 		if ent:IsValidLivingPlayer() and gamemode.Call("PlayerShouldTakeDamage", ent, owner) and ent ~= owner then
 			ent:GiveStatus("sickness", 10)
 			local gt = ent:GiveStatus("enfeeble", 5)

@@ -48,7 +48,7 @@ local function DoFleshThrow(pl, wep)
 			local startpos = pl:GetShootPos()
 			local aimang = pl:EyeAngles()
 
-			for i, pattern in pairs(PoisonPatterns) do
+			for i, pattern in ipairs(PoisonPatterns) do
 				local ang = Angle(aimang.p, aimang.y, aimang.r)
 				ang:RotateAroundAxis(ang:Up(), pattern.yaw)
 				ang:RotateAroundAxis(ang:Right(), pattern.pitch)

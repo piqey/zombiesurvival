@@ -46,7 +46,7 @@ local function ReorderZombieClassesSort(a, b)
 end
 function GM:ReorderZombieClasses()
 	table.sort(self.ZombieClasses, ReorderZombieClassesSort)
-	for k, v in pairs(self.ZombieClasses) do
+	for k, v in ipairs(self.ZombieClasses) do
 		if type(k) == "number" then
 			self.ZombieClasses[v.Name] = v
 			v.Index = k
@@ -132,7 +132,7 @@ function GM:RegisterZombieClasses()
 		CLASS = nil
 	end
 
-	for k, v in pairs(self.ZombieClasses) do
+	for k, v in ipairs(self.ZombieClasses) do
 		local base = v.Base
 		if base then
 			base = base..".lua"
@@ -165,7 +165,7 @@ function GM:RegisterZombieClasses()
 		end
 	end
 
-	for k, v in pairs(self.ZombieClasses) do
+	for k, v in ipairs(self.ZombieClasses) do
 		if v.BetterVersion and self.ZombieClasses[v.BetterVersion] then
 			self.ZombieClasses[v.BetterVersion].BetterVersionOf = v.Name
 		end

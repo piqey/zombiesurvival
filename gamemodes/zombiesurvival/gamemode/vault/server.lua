@@ -31,7 +31,7 @@ function GM:GetVaultFile(pl)
 end
 
 function GM:SaveAllVaults()
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		self:SaveVault(pl)
 	end
 end

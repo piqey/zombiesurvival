@@ -296,7 +296,7 @@ function meta:GetBossZombieIndex()
 	end
 
 	local bossindex
-	for _, classindex in pairs(bossclasses) do
+	for _, classindex in ipairs(bossclasses) do
 		local classtable = GAMEMODE.ZombieClasses[classindex]
 		if string.lower(classtable.Name) == string.lower(desired) then
 			bossindex = classindex
@@ -323,7 +323,7 @@ function meta:NearestArsenalCrateOwnedByOther()
 	table.Add(arseents, ents.FindByClass("prop_arsenalcrate"))
 	table.Add(arseents, ents.FindByClass("status_arsenalpack"))
 
-	for _, ent in pairs(arseents) do
+	for _, ent in ipairs(arseents) do
 		local nearest = ent:NearestPoint(pos)
 		local owner = ent.GetObjectOwner and ent:GetObjectOwner() or ent:GetOwner()
 		if owner ~= self and owner:IsValidHuman() and pos:DistToSqr(nearest) <= 10000 and (WorldVisible(pos, nearest) or self:TraceLine(100).Entity == ent) then
@@ -369,7 +369,7 @@ function meta:KnockDown(time)
 end
 
 function meta:FakeDeath(sequenceid, modelscale, length, start)
-	for _, ent in pairs(ents.FindByClass("fakedeath")) do
+	for _, ent in ipairs(ents.FindByClass("fakedeath")) do
 		if ent:GetOwner() == self then
 			ent:Remove()
 		end
@@ -462,7 +462,7 @@ function meta:AddLifeBrainsEaten(amount)
 end
 
 function meta:RemoveEphemeralStatuses()
-	for _, status in pairs(ents.FindByClass("status_*")) do
+	for _, status in ipairs(ents.FindByClass("status_*")) do
 		if status.Ephemeral and status:IsValid() and status:GetOwner() == self then
 			status:Remove()
 		end
@@ -696,13 +696,13 @@ end
 
 function meta:RemoveAllStatus(bSilent, bInstant)
 	if bInstant then
-		for _, ent in pairs(ents.FindByClass("status_*")) do
+		for _, ent in ipairs(ents.FindByClass("status_*")) do
 			if not ent.NoRemoveOnDeath and ent:GetOwner() == self then
 				ent:Remove()
 			end
 		end
 	else
-		for _, ent in pairs(ents.FindByClass("status_*")) do
+		for _, ent in ipairs(ents.FindByClass("status_*")) do
 			if not ent.NoRemoveOnDeath and ent:GetOwner() == self then
 				ent.SilentRemove = bSilent
 				ent:SetDie()
@@ -714,7 +714,7 @@ end
 function meta:RemoveStatus(sType, bSilent, bInstant, sExclude)
 	local removed
 
-	for _, ent in pairs(ents.FindByClass("status_"..sType)) do
+	for _, ent in ipairs(ents.FindByClass("status_"..sType)) do
 		if ent:GetOwner() == self and not (sExclude and ent:GetClass() == "status_"..sExclude) then
 			if bInstant then
 				ent:Remove()
@@ -854,7 +854,7 @@ function meta:DropAllWeapons()
 	local vPos = self:GetPos()
 	local vVel = self:GetVelocity()
 	local zmax = self:OBBMaxs().z * 0.75
-	for _, wep in pairs(self:GetWeapons()) do
+	for _, wep in ipairs(self:GetWeapons()) do
 		if wep:IsValid() then
 			local ent = self:DropWeaponByType(wep:GetClass())
 			if ent and ent:IsValid() then
@@ -1054,7 +1054,7 @@ function meta:TakePoints(points)
 end
 
 function meta:UpdateAllZombieClasses()
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if pl ~= self and pl:Team() == TEAM_UNDEAD then
 			local id = pl:GetZombieClass()
 			if id and 0 < id then
@@ -1070,7 +1070,7 @@ end
 function meta:CreateAmbience(class)
 	class = "status_"..class
 
-	for _, ent in pairs(ents.FindByClass(class)) do
+	for _, ent in ipairs(ents.FindByClass(class)) do
 		if ent:GetOwner() == self then return end
 	end
 
@@ -1471,7 +1471,7 @@ end
 
 local function nocollidetimer(self, timername)
 	if self:IsValid() then
-		for _, e in pairs(ents.FindInBox(self:WorldSpaceAABB())) do
+		for _, e in ipairs(ents.FindInBox(self:WorldSpaceAABB())) do
 			if e and e:IsValid() and e:IsPlayer() and e ~= self and GAMEMODE:ShouldCollide(self, e) then
 				return
 			end
@@ -1486,7 +1486,7 @@ end
 function meta:TemporaryNoCollide(force)
 	if self:GetCollisionGroup() ~= COLLISION_GROUP_PLAYER and not force then return end
 
-	for _, e in pairs(ents.FindInBox(self:WorldSpaceAABB())) do
+	for _, e in ipairs(ents.FindInBox(self:WorldSpaceAABB())) do
 		if e and e:IsValid() and e:IsPlayer() and e ~= self and GAMEMODE:ShouldCollide(self, e) then
 			self:SetCollisionGroup(COLLISION_GROUP_DEBRIS_TRIGGER)
 
@@ -1592,7 +1592,7 @@ function meta:DoSigilTeleport(target, from, corrupted)
 			end
 		end)
 
-		for _, e in pairs(ents.FindInSphere(movepos, 64)) do
+		for _, e in ipairs(ents.FindInSphere(movepos, 64)) do
 			if e:IsValidLivingZombie() then
 				e:TemporaryNoCollide(true)
 			end
@@ -1702,7 +1702,7 @@ function meta:PulseResonance(attacker, inflictor)
 
 		if attacker:IsValidLivingHuman() then
 			util.BlastDamagePlayer(inflictor, attacker, pos, 100, 75, DMG_ALWAYSGIB, 0.95)
-			for _, ent in pairs(util.BlastAlloc(inflictor, attacker, pos, 100 * (attacker.ExpDamageRadiusMul or 1))) do
+			for _, ent in ipairs(util.BlastAlloc(inflictor, attacker, pos, 100 * (attacker.ExpDamageRadiusMul or 1))) do
 				if ent:IsValidLivingPlayer() and gamemode.Call("PlayerShouldTakeDamage", ent, attacker) then
 					ent:AddLegDamageExt(5, attacker, inflictor, SLOWTYPE_PULSE)
 				end
@@ -1729,7 +1729,7 @@ function meta:CryogenicInduction(attacker, inflictor, damage)
 
 		if attacker:IsValidLivingHuman() then
 			util.BlastDamagePlayer(inflictor, attacker, pos, 100, self:GetMaxHealthEx() * 0.12, DMG_DROWN, 0.95)
-			for _, ent in pairs(util.BlastAlloc(inflictor, attacker, pos, 100 * (attacker.ExpDamageRadiusMul or 1))) do
+			for _, ent in ipairs(util.BlastAlloc(inflictor, attacker, pos, 100 * (attacker.ExpDamageRadiusMul or 1))) do
 				if ent:IsValidLivingPlayer() and gamemode.Call("PlayerShouldTakeDamage", ent, attacker) then
 					ent:AddLegDamageExt(6, attacker, inflictor, SLOWTYPE_COLD)
 				end

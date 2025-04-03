@@ -17,7 +17,7 @@ function ENT:DisplayStrings()
 	for k,v in pairs(self.PartStrings) do
 		FullString = FullString .. v
 	end
-	for k,v in pairs(ents.FindByName(self.DisplayTarget)) do
+	for k,v in ipairs(ents.FindByName(self.DisplayTarget)) do
 		local EntityClass = v:GetClass()
 		if EntityClass == "game_text" then
 			v:Input("AddOutput", self, self, "message "..FullString)

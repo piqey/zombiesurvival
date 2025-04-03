@@ -22,7 +22,7 @@ function ENT:SetProp(ent)
 
 	if not IsValid(ent) then return end
 
-	for _, e in pairs(ents.FindByClass(self:GetClass())) do
+	for _, e in ipairs(ents.FindByClass(self:GetClass())) do
 		if e ~= self and e and e:IsValid() and e:GetProp() == ent then
 			self.m_entProp = NULL
 			return
@@ -31,7 +31,7 @@ function ENT:SetProp(ent)
 
 	--local teamid = self:GetTeam()
 	local inrad = false
-	for _, pl in pairs(ents.FindInSphere(ent:LocalToWorld(ent:OBBCenter()), ent:BoundingRadius() / 2 + self:GetExtraRadius())) do
+	for _, pl in ipairs(ents.FindInSphere(ent:LocalToWorld(ent:OBBCenter()), ent:BoundingRadius() / 2 + self:GetExtraRadius())) do
 		if pl and pl:IsValidLivingPlayer() then --and (teamid == 0 or pl:Team() == teamid) then
 			inrad = true
 			break
@@ -55,7 +55,7 @@ function ENT:OnRemove()
 		ent:SetMaterial(self.OldMaterial)
 	end
 
-	for _, e in pairs(ents.FindByClass("status_human_holding")) do
+	for _, e in ipairs(ents.FindByClass("status_human_holding")) do
 		if e:IsValid() and e:GetObject() == ent then
 			return
 		end
@@ -81,7 +81,7 @@ function ENT:Think()
 
 	rate = rate * math.Clamp(1 - (self.PushPeak - CurTime()) / self.PushRamp, 0, 1)
 
-	for _, pl in pairs(ents.FindInSphere(center, ent:BoundingRadius() / 2 + self:GetExtraRadius())) do
+	for _, pl in ipairs(ents.FindInSphere(center, ent:BoundingRadius() / 2 + self:GetExtraRadius())) do
 		if pl and pl:IsValidLivingHuman() or (pl:IsPlayer() and pl:Team() == TEAM_UNDEAD and pl:GetZombieClassTable().Boss) then
 			pushout = true
 

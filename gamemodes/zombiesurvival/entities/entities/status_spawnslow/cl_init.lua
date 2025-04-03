@@ -15,7 +15,7 @@ function ENT:Draw()
 	local emitter = ParticleEmitter(owner:GetPos())
 	emitter:SetNearClip(12, 16)
 
-	for _, bonename in pairs(Bones) do
+	for _, bonename in ipairs(Bones) do
 		boneid = owner:LookupBone(bonename)
 		if boneid and boneid > 0 then
 			pos = owner:GetBonePositionMatrixed(boneid)

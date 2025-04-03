@@ -25,7 +25,7 @@ function ENT:AcceptInput(name, activator, caller, args)
 				net.Broadcast()
 
 				if classname ~= "all" then
-					for _, pl in pairs(player.GetAll()) do
+					for _, pl in ipairs(player.GetAll()) do
 						if pl:GetZombieClass() == k then
 							for classid, classtab in ipairs(GAMEMODE.ZombieClasses) do
 								if GAMEMODE:IsClassUnlocked(k) and not classtab.Hidden then

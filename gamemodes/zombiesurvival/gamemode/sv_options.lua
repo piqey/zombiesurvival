@@ -108,7 +108,7 @@ end)
 local function GetMostKey(key, top)
 	top = top or 0
 	local toppl
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if pl[key] and pl[key] > top then
 			top = pl[key]
 			toppl = pl
@@ -123,7 +123,7 @@ end
 local function GetMostFunc(func, top)
 	top = top or 0
 	local toppl
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		local amount = pl[func](pl)
 		if amount > top then
 			top = amount
@@ -186,7 +186,7 @@ end
 GM.HonorableMentions[HM_MOSTDAMAGETOUNDEAD].GetPlayer = function(self)
 	local top = 0
 	local toppl
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if pl.DamageDealt and pl.DamageDealt[TEAM_HUMAN] > top then
 			top = pl.DamageDealt[TEAM_HUMAN]
 			toppl = pl
@@ -201,7 +201,7 @@ end
 GM.HonorableMentions[HM_MOSTDAMAGETOHUMANS].GetPlayer = function(self)
 	local top = 0
 	local toppl
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if pl.DamageDealt and pl.DamageDealt[TEAM_UNDEAD] > top then
 			top = pl.DamageDealt[TEAM_UNDEAD]
 			toppl = pl
@@ -228,7 +228,7 @@ end
 
 GM.HonorableMentions[HM_PACIFIST].GetPlayer = function(self)
 	if WINNER == TEAM_HUMAN then
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			if pl.ZombiesKilled == 0 and pl:Team() == TEAM_HUMAN then return pl end
 		end
 	end
@@ -237,7 +237,7 @@ end
 GM.HonorableMentions[HM_STUPID].GetPlayer = function(self)
 	local dist = 99999
 	local finalpl
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if pl.ZombieSpawnDeathDistance and pl.ZombieSpawnDeathDistance < dist then
 			finalpl = pl
 			dist = pl.ZombieSpawnDeathDistance
@@ -252,7 +252,7 @@ end
 GM.HonorableMentions[HM_OUTLANDER].GetPlayer = function(self)
 	local dist = 0
 	local finalpl
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if pl.ZombieSpawnDeathDistance and dist < pl.ZombieSpawnDeathDistance then
 			finalpl = pl
 			dist = pl.ZombieSpawnDeathDistance

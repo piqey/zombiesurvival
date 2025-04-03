@@ -183,7 +183,7 @@ function meta:SigilTeleportDestination(not_from_sigil, corrupted)
 	local spos, d, icurrent, target, itarget
 
 	if not not_from_sigil then
-		for i, sigil in pairs(sigils) do
+		for i, sigil in ipairs(sigils) do
 			d = sigil:GetPos():DistToSqr(mypos)
 			if d < dist then
 				dist = d
@@ -193,7 +193,7 @@ function meta:SigilTeleportDestination(not_from_sigil, corrupted)
 	end
 
 	dist = -1
-	for i, sigil in pairs(sigils) do
+	for i, sigil in ipairs(sigils) do
 		if i == icurrent then continue end
 
 		spos = sigil:GetPos() - mypos
@@ -238,7 +238,7 @@ function meta:NearArsenalCrate()
 	table.Add(arseents, ents.FindByClass("prop_arsenalcrate"))
 	table.Add(arseents, ents.FindByClass("status_arsenalpack"))
 
-	for _, ent in pairs(arseents) do
+	for _, ent in ipairs(arseents) do
 		local nearest = ent:NearestPoint(pos)
 		if pos:DistToSqr(nearest) <= 10000 and (WorldVisible(pos, nearest) or self:TraceLine(100).Entity == ent) then -- 80^2
 			return true
@@ -254,7 +254,7 @@ function meta:NearRemantler()
 
 	local remantlers = ents.FindByClass("prop_remantler")
 
-	for _, ent in pairs(remantlers) do
+	for _, ent in ipairs(remantlers) do
 		local nearest = ent:NearestPoint(pos)
 		if pos:DistToSqr(nearest) <= 10000 and (WorldVisible(pos, nearest) or self:TraceLine(100).Entity == ent) then -- 80^2
 			return true
@@ -801,7 +801,7 @@ function meta:CompensatedPenetratingMeleeTrace(distance, size, start, dir, hit_t
 	local t = self:PenetratingMeleeTrace(distance, size, start, dir, hit_team_members)
 	self:LagCompensation(false)
 
-	for _, tr in pairs(t) do
+	for _, tr in ipairs(t) do
 		InvalidateCompensatedTrace(tr, start, distance)
 	end
 
@@ -819,19 +819,19 @@ function meta:CompensatedZombieMeleeTrace(distance, size, start, dir, hit_team_m
 	local t, hitprop = self:PenetratingMeleeTrace(distance, size, start, dir, hit_team_members)
 	local t_legs = self:PenetratingMeleeTrace(distance, size, self:WorldSpaceCenter(), dir, hit_team_members)
 
-	for _, tr in pairs(t) do
+	for _, tr in ipairs(t) do
 		hit_entities[tr.Entity] = true
 	end
 
 	if not hitprop then
-		for _, tr in pairs(t_legs) do
+		for _, tr in ipairs(t_legs) do
 			if not hit_entities[tr.Entity] then
 				t[#t + 1] = tr
 			end
 		end
 	end
 
-	for _, tr in pairs(t) do
+	for _, tr in ipairs(t) do
 		InvalidateCompensatedTrace(tr, tr.StartPos, distance)
 	end
 
@@ -908,7 +908,7 @@ function meta:ActiveBarricadeGhosting(override)
 	max.x = max.x - 1
 	max.y = max.y - 1
 
-	for _, ent in pairs(ents.FindInBox(min, max)) do
+	for _, ent in ipairs(ents.FindInBox(min, max)) do
 		if ent and ent:IsValid() and self:ShouldBarricadeGhostWith(ent) then return true end
 	end
 
@@ -936,7 +936,7 @@ function meta:NearestRemantler()
 	local remantlers = ents.FindByClass("prop_remantler")
 	local min, remantler = 99999
 
-	for _, ent in pairs(remantlers) do
+	for _, ent in ipairs(remantlers) do
 		local nearpoint = ent:NearestPoint(pos)
 		local trmatch = self:TraceLine(100).Entity == ent
 		local dist = trmatch and 0 or pos:DistToSqr(nearpoint)

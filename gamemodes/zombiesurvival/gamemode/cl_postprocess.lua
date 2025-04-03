@@ -222,7 +222,7 @@ function GM:DrawHumanIndicators()
 
 	local eyepos = EyePos()
 	local range, dist, healthfrac, pos, size
-	for _, pl in pairs(team_GetPlayers(TEAM_HUMAN)) do
+	for _, pl in ipairs(team_GetPlayers(TEAM_HUMAN)) do
 		range = pl:GetAuraRangeSqr()
 		dist = pl:GetPos():DistToSqr(eyepos)
 		if pl:Alive() and dist <= range and (not pl:GetDTBool(DT_PLAYER_BOOL_NECRO) or dist >= 27500) then

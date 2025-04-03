@@ -119,7 +119,7 @@ local MuscularBones = {
 }
 local SpineBones = {"ValveBiped.Bip01_Spine2", "ValveBiped.Bip01_Spine4", "ValveBiped.Bip01_Spine1", "ValveBiped.Bip01_Neck1"}
 function CLASS:BuildBonePositions(pl)
-	for _, bone in pairs(SpineBones) do
+	for _, bone in ipairs(SpineBones) do
 		local boneid = pl:LookupBone(bone)
 		if boneid and boneid > 0 then
 			pl:ManipulateBonePosition(boneid, vecSpineOffset)

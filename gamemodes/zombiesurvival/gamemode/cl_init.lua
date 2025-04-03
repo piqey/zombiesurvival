@@ -749,7 +749,7 @@ function GM:_Think()
 
 	local tab
 
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if P_Team(pl) == TEAM_UNDEAD then
 			tab = pl:GetZombieClassTable()
 			if tab.BuildBonePositions then
@@ -828,7 +828,7 @@ function GM:DrawSigilTeleportBar(x, y, fraction, target, screenscale)
 	local startx = x - maxbarwidth * 0.5
 
 	local letter = "?"
-	for i, sigil in pairs(ents.FindByClass("prop_obj_sigil")) do
+	for i, sigil in ipairs(ents.FindByClass("prop_obj_sigil")) do
 		if target == sigil then
 			letter = string.char(64 + i)
 			break
@@ -1522,7 +1522,7 @@ end
 
 function GM:InitializeBeats()
 	local _, dirs = file.Find("sound/zombiesurvival/beats/*", "GAME")
-	for _, dirname in pairs(dirs) do
+	for _, dirname in ipairs(dirs) do
 		if dirname == "none" or dirname == "default" then continue end
 
 		self.Beats[dirname] = {}

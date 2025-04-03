@@ -75,7 +75,7 @@ local function ItemPanelDoClick(self)
 		GAMEMODE:DoAltSelectedItemUpdate()
 		return
 	else
-		for _, v in pairs(self:GetParent():GetChildren()) do
+		for _, v in ipairs(self:GetParent():GetChildren()) do
 			v.On = false
 		end
 		self.On = true

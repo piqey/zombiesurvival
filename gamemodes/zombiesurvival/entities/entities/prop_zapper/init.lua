@@ -1,7 +1,7 @@
 INC_SERVER()
 
 local function RefreshZapperOwners(pl)
-	for _, ent in pairs(ents.FindByClass("prop_zapper*")) do
+	for _, ent in ipairs(ents.FindByClass("prop_zapper*")) do
 		if ent:IsValid() and ent:GetObjectOwner() == pl then
 			ent:ClearObjectOwner()
 		end
@@ -135,7 +135,7 @@ function ENT:FindZapperTarget(pos, owner)
 	local targethealth = 99999
 	local isheadcrab
 
-	for k, ent in pairs(ents.FindInSphere(pos, 135 * (owner.FieldRangeMul or 1))) do
+	for k, ent in ipairs(ents.FindInSphere(pos, 135 * (owner.FieldRangeMul or 1))) do
 		if ent:IsValidLivingZombie() and not ent:GetZombieClassTable().NeverAlive then
 			isheadcrab = ent:IsHeadcrab()
 			if (isheadcrab or ent:Health() < targethealth) and TrueVisibleFilters(pos, ent:NearestPoint(pos), self, ent) then

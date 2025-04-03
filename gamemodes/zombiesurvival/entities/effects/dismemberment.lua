@@ -65,9 +65,9 @@ function EFFECT:Render()
 		emitter:SetNearClip(20, 30)
 
 		local iDismemberment = eRagdoll.Dismemberment or 0
-		for index, iDismemberPart in pairs(Dismembers) do
+		for index, iDismemberPart in ipairs(Dismembers) do
 			if bit.band(iDismemberPart, iDismemberment) == iDismemberPart then
-				for _, sZeroBone in pairs(DismemberBones[index].ToZero) do
+				for _, sZeroBone in ipairs(DismemberBones[index].ToZero) do
 					local mdl = string.lower(eRagdoll:GetModel())
 					if BoneTranslates[mdl] and BoneTranslates[mdl][sZeroBone] then
 						sZeroBone = BoneTranslates[mdl][sZeroBone]
@@ -79,7 +79,7 @@ function EFFECT:Render()
 					end
 				end
 
-				for sZeroBone in pairs(DismemberBones[index].ToBleed) do
+				for sZeroBone in ipairs(DismemberBones[index].ToBleed) do
 					local mdl = string.lower(eRagdoll:GetModel())
 					if BoneTranslates[mdl] and BoneTranslates[mdl][sZeroBone] then
 						sZeroBone = BoneTranslates[mdl][sZeroBone]

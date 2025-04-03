@@ -13,7 +13,7 @@ function ENT:Initialize()
 end
 
 function ENT:IsInsideProp()
-	for _, ent in pairs(ents.FindInBox(self:WorldSpaceAABB())) do
+	for _, ent in ipairs(ents.FindInBox(self:WorldSpaceAABB())) do
 		if ent and ent ~= self and ent:IsValid() and ent:GetMoveType() == MOVETYPE_VPHYSICS and ent:GetSolid() > 0 then return true end
 	end
 
@@ -36,7 +36,7 @@ function ENT:RecalculateValidity()
 		if self:IsInsideProp() then
 			valid = false
 		else
-			for _, ent in pairs(ents.FindInSphere(tr.HitPos, 48)) do
+			for _, ent in ipairs(ents.FindInSphere(tr.HitPos, 48)) do
 				if ent and ent:IsValid() and ent:GetClass() == "prop_messagebeacon" then
 					valid = false
 					break

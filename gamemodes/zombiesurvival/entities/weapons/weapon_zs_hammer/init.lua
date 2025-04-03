@@ -13,7 +13,7 @@ function SWEP:Reload()
 	local ent
 	local dist
 
-	for _, e in pairs(ents.FindByClass("prop_nail")) do
+	for _, e in ipairs(ents.FindByClass("prop_nail")) do
 		if not e.m_PryingOut and e:GetParent() == trent then
 			local edist = e:GetActualPos():DistToSqr(tr.HitPos)
 			if not dist or edist < dist then
@@ -120,7 +120,7 @@ function SWEP:SecondaryAttack()
 	if not gamemode.Call("CanPlaceNail", owner, tr) then return end
 
 	local count = 0
-	for _, nail in pairs(trent:GetNails()) do
+	for _, nail in ipairs(trent:GetNails()) do
 		if nail:GetDeployer() == owner then
 			count = count + 1
 			if count >= GAMEMODE.MaxNails then
@@ -138,7 +138,7 @@ function SWEP:SecondaryAttack()
 		return
 	end
 
-	for _, nail in pairs(ents.FindByClass("prop_nail")) do
+	for _, nail in ipairs(ents.FindByClass("prop_nail")) do
 		if nail:GetParent() == trent and nail:GetActualPos():DistToSqr(tr.HitPos) <= 81 then
 			owner:PrintTranslatedMessage(HUD_PRINTCENTER, "too_close_to_another_nail")
 			return

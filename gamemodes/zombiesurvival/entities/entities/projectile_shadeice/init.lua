@@ -49,7 +49,7 @@ function ENT:Hit(vHitPos, vHitNormal, hitent)
 		if hitent.FizzleStatusAOE then return end
 	end
 
-	for _, ent in pairs(util.BlastAlloc(self, owner, vHitPos, 110)) do
+	for _, ent in ipairs(util.BlastAlloc(self, owner, vHitPos, 110)) do
 		if ent:IsValidLivingPlayer() and gamemode.Call("PlayerShouldTakeDamage", ent, owner) and ent ~= owner then
 			local nearest = ent:NearestPoint(vHitPos)
 			local scalar = ((110 - nearest:Distance(vHitPos)) / 110)

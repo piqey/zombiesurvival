@@ -174,7 +174,7 @@ function MakepWeapons(silent)
 
 	frame.ViewerY = y
 
-	for _, wep in pairs(weps) do
+	for _, wep in ipairs(weps) do
 		local enttab = weapons.Get(wep)
 		local wepnode
 		if enttab then
@@ -187,7 +187,7 @@ function MakepWeapons(silent)
 		wepnode.Category = addedcat[wep] or ITEMCAT_GUNS
 	end
 
-	for _, wep in pairs(crafts) do
+	for _, wep in ipairs(crafts) do
 		local enttab = weapons.Get(wep)
 		local wepnode
 		if enttab then

@@ -162,7 +162,7 @@ function ENT:Explode()
 		local pos = self:GetPos()
 		local radius = 70
 		if alt then
-			for _, ent in pairs(util.BlastAlloc(inflictor, owner, pos, radius * (owner.ExpDamageRadiusMul or 1))) do
+			for _, ent in ipairs(util.BlastAlloc(inflictor, owner, pos, radius * (owner.ExpDamageRadiusMul or 1))) do
 				if ent:IsValidLivingPlayer() and gamemode.Call("PlayerShouldTakeDamage", ent, owner) then
 					ent:AddLegDamageExt(15 * self:GetCharge(), owner, inflictor, SLOWTYPE_COLD)
 				end

@@ -18,7 +18,7 @@ function SWEP:DoThrow()
 	local aimang = owner:EyeAngles()
 	local ang
 
-	for k, spr in pairs(self.PoisonPattern) do
+	for k, spr in ipairs(self.PoisonPattern) do
 		if k == "BaseClass" then continue end
 
 		ang = Angle(aimang.p, aimang.y, aimang.r)

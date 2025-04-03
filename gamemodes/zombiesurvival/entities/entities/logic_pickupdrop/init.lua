@@ -13,17 +13,17 @@ function ENT:AcceptInput(name, activator, caller, args)
 		self:FireOutput(name, activator, caller, args)
 		return true
 	elseif name == "disablepickup" then
-		for _, ent in pairs(ents.FindByName(self.EntityToWatch)) do
+		for _, ent in ipairs(ents.FindByName(self.EntityToWatch)) do
 			ent.m_NoPickup = true
 		end
 		return true
 	elseif name == "enablepickup" then
-		for _, ent in pairs(ents.FindByName(self.EntityToWatch)) do
+		for _, ent in ipairs(ents.FindByName(self.EntityToWatch)) do
 			ent.m_NoPickup = nil
 		end
 		return true
 	elseif name	== "forcedrop" then
-		for _, ent in pairs(ents.FindByClass("status_human_holding")) do
+		for _, ent in ipairs(ents.FindByClass("status_human_holding")) do
 			local object = ent:GetObject()
 			if object:IsValid() and object:GetName() == self.EntityToWatch then
 				ent:Remove()

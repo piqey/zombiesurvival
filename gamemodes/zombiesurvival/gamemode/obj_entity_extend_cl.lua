@@ -95,7 +95,7 @@ local CachedNails = {}
 timer.Create("CacheNails", 0.3333, 0, function()
 	CachedNails = {}
 
-	for _, nail in pairs(ents.FindByClass("prop_nail")) do
+	for _, nail in ipairs(ents.FindByClass("prop_nail")) do
 		if nail:IsValid() and nail.GetAttachEntity then
 			CachedNails[#CachedNails + 1] = nail
 			nail.CachedAttachEntity = nail:GetAttachEntity()
@@ -106,7 +106,7 @@ end)
 
 function meta:IsNailed()
 	if self:IsValid() then -- In case we're the world.
-		for _, nail in pairs(CachedNails) do
+		for _, nail in ipairs(CachedNails) do
 			if nail.CachedAttachEntity == self or nail.CachedBaseEntity == self then
 				return true
 			end
@@ -137,7 +137,7 @@ timer.Create("CacheArsenalEntities", 0.5, 0, function()
 	table.Add(arseents, ents.FindByClass("prop_arsenalcrate"))
 	table.Add(arseents, ents.FindByClass("status_arsenalpack"))
 
-	for _, v in pairs(player.GetAll()) do
+	for _, v in ipairs(player.GetAll()) do
 		if v ~= MySelf and not v:HasTrinket("arsenalpack") and v:HasWeapon("weapon_zs_arsenalcrate") then
 			table.insert(arseents, v)
 		end
@@ -155,7 +155,7 @@ timer.Create("CachedResupplyEntities", 0.5, 0, function()
 	table.Add(resupents, ents.FindByClass("prop_resupplybox"))
 	table.Add(resupents, ents.FindByClass("status_resupplypack"))
 
-	for _, v in pairs(player.GetAll()) do
+	for _, v in ipairs(player.GetAll()) do
 		if v ~= MySelf and not v:HasTrinket("resupplypack") and v:HasWeapon("weapon_zs_resupplybox") then
 			table.insert(resupents, v)
 		end
@@ -172,7 +172,7 @@ timer.Create("CachedRemantlerEntities", 0.5, 0, function()
 	local remanents = {}
 	table.Add(remanents, ents.FindByClass("prop_remantler"))
 
-	for _, v in pairs(player.GetAll()) do
+	for _, v in ipairs(player.GetAll()) do
 		if v ~= MySelf and v:HasWeapon("weapon_zs_remantler") then
 			table.insert(remanents, v)
 		end

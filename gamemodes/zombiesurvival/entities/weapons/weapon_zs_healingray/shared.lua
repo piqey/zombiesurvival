@@ -56,7 +56,7 @@ function SWEP:PrimaryAttack()
 
 	local trtbl = owner:CompensatedPenetratingMeleeTrace(self.HealRange, 2, nil, nil, true)
 	local ent
-	for _, tr in pairs(trtbl) do
+	for _, tr in ipairs(trtbl) do
 		local test = tr.Entity
 		if test and test:IsValidLivingHuman() and gamemode.Call("PlayerCanBeHealed", test) then
 			ent = test

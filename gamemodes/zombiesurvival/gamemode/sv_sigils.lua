@@ -41,7 +41,7 @@ function GM:CreateSigils(secondtry, rearrange)
 	local vec
 	local mapplacednodes = ents.FindByClass("info_sigilnode")
 	if #mapplacednodes > 0 and not self.ProfilerIsPreMade then -- or maybe they're a twit
-		for _, placednode in pairs(mapplacednodes) do
+		for _, placednode in ipairs(mapplacednodes) do
 			nodes[#nodes + 1] = {v = placednode:GetPos(), en = placednode}
 		end
 	else
@@ -86,13 +86,13 @@ function GM:CreateSigils(secondtry, rearrange)
 		local sigs = ents.FindByClass("prop_obj_sigil")
 		local numsigs = #sigs
 		if rearrange then
-			for _, sig in pairs(sigs) do
+			for _, sig in ipairs(sigs) do
 				sig.NodePos = Vector(99999, 99999, 99999)
 			end
 		end
 
 		local force
-		for _, n in pairs(nodes) do
+		for _, n in ipairs(nodes) do
 			if n.en and n.en.ForceSpawn then
 				force = n
 			end
@@ -100,11 +100,11 @@ function GM:CreateSigils(secondtry, rearrange)
 			n.d = 999999
 
 			if numsigs == 0 then
-				for __, spawn in pairs(spawns) do
+				for __, spawn in ipairs(spawns) do
 					n.d = math.min(n.d, n.v:Distance(spawn:GetPos()))
 				end
 			else
-				for __, sig in pairs(sigs) do
+				for __, sig in ipairs(sigs) do
 					n.d = math.min(n.d, n.v:Distance(sig.NodePos))
 				end
 			end

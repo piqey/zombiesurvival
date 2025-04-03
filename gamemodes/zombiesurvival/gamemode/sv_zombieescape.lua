@@ -57,13 +57,13 @@ hook.Add("EntityKeyValue", "zombieescape", function(ent, key, value)
 end)
 
 hook.Add("InitPostEntityMap", "zombieescape", function(fromze)
-	for _, ent in pairs(ents.FindByClass("filter_activator_team")) do
+	for _, ent in ipairs(ents.FindByClass("filter_activator_team")) do
 		if ent.ZEFix then
 			ent:SetKeyValue("filterteam", ent.ZEFix)
 		end
 	end
 
-	for _, ent in pairs(ents.GetAll()) do
+	for _, ent in ipairs(ents.GetAll()) do
 		if ent and ent.ZEDelete and ent:IsValid() then
 			ent:Remove()
 		end
@@ -102,7 +102,7 @@ end)
 
 hook.Add("OnWaveStateChanged", "zombieescape", function()
 	if GAMEMODE:GetWave() == 1 and GAMEMODE:GetWaveActive() then
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			pl:Freeze(false)
 			pl:GodDisable()
 		end
@@ -120,7 +120,7 @@ hook.Add("Think", "zombieescape", function()
 			game.CleanUpMap(false, GAMEMODE.CleanupFilter)
 			gamemode.Call("InitPostEntityMap", true)
 
-			for _, pl in pairs(team.GetPlayers(TEAM_HUMAN)) do
+			for _, pl in ipairs(team.GetPlayers(TEAM_HUMAN)) do
 				pl.ZEFreeze = nil
 				pl:Freeze(false)
 				pl:GodDisable()
@@ -139,7 +139,7 @@ hook.Add("Think", "zombieescape", function()
 	if CurTime() >= GAMEMODE:GetWaveStart() + GAMEMODE.ZE_TimeLimit and CurTime() >= NextDamage then
 		NextDamage = CurTime() + 1
 
-		for _, pl in pairs(team.GetPlayers(TEAM_HUMAN)) do
+		for _, pl in ipairs(team.GetPlayers(TEAM_HUMAN)) do
 			pl:TakeDamage(5)
 		end
 	end
@@ -147,7 +147,7 @@ hook.Add("Think", "zombieescape", function()
 	local undead = team.GetPlayers(TEAM_UNDEAD)
 	if #undead == 0 then return end
 
-	for _, pl in pairs(undead) do
+	for _, pl in ipairs(undead) do
 		if not pl.KilledByTriggerHurt or CurTime() > pl.KilledByTriggerHurt + 12 then
 			CheckTime = nil
 			return

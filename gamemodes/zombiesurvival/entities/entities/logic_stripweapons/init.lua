@@ -14,7 +14,7 @@ function ENT:AcceptInput(name, activator, caller, args)
 		if activator:IsPlayer() and activator:Alive() and activator:Team() == TEAM_HUMAN then
 			if tonumber(self.KeepFists) == 1 then
 				local weps = activator:GetWeapons()
-				for k, v in pairs(weps) do
+				for k, v in ipairs(weps) do
 					local weaponclass = v:GetClass()
 					if weaponclass ~= "weapon_zs_fists" then activator:StripWeapon(weaponclass) end
 				end

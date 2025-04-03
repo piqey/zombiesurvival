@@ -35,7 +35,7 @@ function SWEP:PrimaryAttack()
 	owner.LastRangedAttack = CurTime()
 
 	if SERVER then
-		for _, ent in pairs(util.BlastAlloc(self, owner, owner:GetPos(), 57)) do
+		for _, ent in ipairs(util.BlastAlloc(self, owner, owner:GetPos(), 57)) do
 			if ent:IsValidLivingPlayer() and gamemode.Call("PlayerShouldTakeDamage", ent, owner) and ent ~= owner then
 				ent:GiveStatus("frost", 4)
 				ent:AddLegDamageExt(10, owner, self, SLOWTYPE_COLD)

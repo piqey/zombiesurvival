@@ -19,7 +19,7 @@ local function DoFleshThrow(pl, wep)
 			local aimang = pl:EyeAngles()
 			local ang
 
-			for _, spr in pairs(Spread) do
+			for _, spr in ipairs(Spread) do
 				ang = Angle(aimang.p, aimang.y, aimang.r)
 				ang:RotateAroundAxis(ang:Up(), spr[1] * 5)
 				ang:RotateAroundAxis(ang:Right(), spr[2] * 5)

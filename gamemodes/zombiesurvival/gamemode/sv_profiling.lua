@@ -119,7 +119,7 @@ end
 function GM:DebugProfiler()
 	for _, node in pairs(self.ProfilerNodes) do
 		local spawned = false
-		for __, e in pairs(ents.FindByClass("prop_dynamic*")) do
+		for __, e in ipairs(ents.FindByClass("prop_dynamic*")) do
 			if e.IsNode and e:GetPos() == node then spawned = true end
 		end
 		if not spawned then
@@ -176,7 +176,7 @@ function GM:ProfilerPlayerValid(pl)
 	end
 
 	-- Are they near a trigger hurt?
-	for _, ent in pairs(ents.FindInSphere(plcenter, 256)) do
+	for _, ent in ipairs(ents.FindInSphere(plcenter, 256)) do
 		if ent and ent:IsValid() then
 			local entclass = ent:GetClass()
 			if entclass == "trigger_hurt" then
@@ -187,7 +187,7 @@ function GM:ProfilerPlayerValid(pl)
 	end
 
 	-- What about zombie spawns?
-	for _, ent in pairs(team.GetValidSpawnPoint(TEAM_UNDEAD)) do
+	for _, ent in ipairs(team.GetValidSpawnPoint(TEAM_UNDEAD)) do
 		if ent:GetPos():DistToSqr(plcenter) < 176400 then --420^2
 			--print('near spawn')
 			return false
@@ -280,7 +280,7 @@ function GM:ProfilerTick()
 	if not self:ProfilerEnabled() or not self:NeedsProfiling() then return end
 
 	local changed = false
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if not self:ProfilerPlayerValid(pl) then continue end
 
 		table.insert(self.ProfilerNodes, pl:GetPos())

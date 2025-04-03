@@ -12,7 +12,7 @@ STATTRACK_TYPE_SKILL = 4
 hook.Add("Initialize", "ZSProfiler", function()
 	file.CreateDir(stattrack.Folder)
 
-	for _, map in pairs({"tantibus", "serious_sam", "gauntlet", "high_noon", "croak"}) do
+	for _, map in ipairs({"tantibus", "serious_sam", "gauntlet", "high_noon", "croak"}) do
 		if string.find(game.GetMap(), map) then
 			stattrack.BlackList = true
 		end

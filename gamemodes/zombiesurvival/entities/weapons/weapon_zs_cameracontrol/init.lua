@@ -13,7 +13,7 @@ end
 function SWEP:CycleCamera(reverse)
 	local cameras = {}
 
-	for _, camera in pairs(ents.FindByClass("prop_camera")) do
+	for _, camera in ipairs(ents.FindByClass("prop_camera")) do
 		if camera:IsValid() then
 			table.insert(cameras, camera)
 		end
@@ -22,7 +22,7 @@ function SWEP:CycleCamera(reverse)
 	if #cameras == 0 then return end
 
 	local index
-	for i, camera in pairs(cameras) do
+	for i, camera in ipairs(cameras) do
 		if self:GetCamera() == camera then
 			index = i
 			break

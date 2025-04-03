@@ -94,7 +94,7 @@ local function Cmd_ViewModel( pl, cmd, args )
 	pl:SendLua([[LocalPlayer():GetViewModel():SetWeaponModel(Model("]]..newmod..[["), Entity(]]..wep:EntIndex()..[[))]])
 
 	local quickswitch = nil
-	for k, v in pairs( pl:GetWeapons() ) do
+	for k, v in ipairs( pl:GetWeapons() ) do
 		if (v:GetClass() != wep:GetClass()) then
 			quickswitch = v:GetClass()
 			break

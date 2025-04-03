@@ -54,7 +54,7 @@ function ENT:GiveToActivator(activator, caller)
 			if self.PlacedInMap and GAMEMODE.WeaponRequiredForAmmo and team.NumPlayers(TEAM_HUMAN) > 1 then
 				local hasweapon = false
 				local lowertype = string.lower(self:GetAmmoType())
-				for _, wep in pairs(activator:GetWeapons()) do
+				for _, wep in ipairs(activator:GetWeapons()) do
 					if wep.Primary and wep.Primary.Ammo and string.lower(wep.Primary.Ammo) == lowertype
 					or wep.Secondary and wep.Secondary.Ammo and string.lower(wep.Secondary.Ammo) == lowertype
 					or wep.ResupplyAmmoType and string.lower(wep.ResupplyAmmoType) == lowertype then

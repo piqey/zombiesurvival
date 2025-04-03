@@ -113,7 +113,7 @@ function ENT:GetScanFilter()
 	local filter = team.GetPlayers(TEAM_HUMAN)
 	filter[#filter + 1] = self
 	filter[#filter + 1] = self:GetTurretHitbox()
-	for  _, pl in pairs(team.GetPlayers(TEAM_UNDEAD)) do
+	for  _, pl in ipairs(team.GetPlayers(TEAM_UNDEAD)) do
 		if pl:GetZombieClassTable().NoTurretTarget then
 			filter[#filter + 1] = pl
 		end

@@ -28,7 +28,7 @@ function ENT:KeyValue(key, value)
 			GAMEMODE.StartingLoadout = {}
 		else
 			local tab = {}
-			for k, v in pairs(string.Explode(",", value)) do
+			for k, v in ipairs(string.Explode(",", value)) do
 				local item, amount = string.match(v, "(.+):(%d+)")
 				if item and amount then
 					tab[item] = tonumber(amount) or 1
@@ -42,7 +42,7 @@ function ENT:KeyValue(key, value)
 			GAMEMODE.RedeemLoadout = {}
 		else
 			local tab = {}
-			for k, v in pairs(string.Explode(",", value)) do
+			for k, v in ipairs(string.Explode(",", value)) do
 				local item, amount = string.match(v, "(.+):(%d+)")
 				if item and amount then
 					tab[item] = tonumber(amount) or 1

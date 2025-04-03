@@ -165,7 +165,7 @@ function ZSBOTS.StartCommand(pl, cmd)
 				local obstruction_positions = {}
 				local obstruction_position
 
-				for _, ent in pairs(ents.FindInSphere(eyepos, math.sqrt(meleerange))) do
+				for _, ent in ipairs(ents.FindInSphere(eyepos, math.sqrt(meleerange))) do
 					if ent:GetClass() == "func_breakable" or ent:IsBarricadeProp() or (ent:GetMoveType() == MOVETYPE_VPHYSICS and ent:GetPhysicsObject():IsValid() and ent:GetPhysicsObject():IsMoveable()) --[[and ent:VisibleVec(eyepos)]] then
 						local nearest = ent:NearestPoint(eyepos)
 						if nearest == vector_origin then nearest = ent:WorldSpaceCenter() end
@@ -255,7 +255,7 @@ function ZSBOTS.Think()
 	NextBotTick = CurTime() + 0.25
 
 	-- This is significantly cheaper than pathfinding to all valid targets.
-	for _, bot in pairs(Bots) do
+	for _, bot in ipairs(Bots) do
 		bot.PathableTargets = {}
 
 		for __, pl in ipairs(player.GetAll()) do
@@ -266,15 +266,15 @@ function ZSBOTS.Think()
 			end
 		end
 
-		--[[for _, ent in pairs(ents.FindByClass("prop_*")) do
+		--[[for _, ent in ipairs(ents.FindByClass("prop_*")) do
 			if ent:IsBarricadeProp() and ent:HumanNearby() then table.insert(bot.PathableTargets, ent) end
 		end]]
 
-		--[[for _, ent in pairs(ents.FindByClass("func_breakable*")) do
+		--[[for _, ent in ipairs(ents.FindByClass("func_breakable*")) do
 			if ent:HumanNearby() then table.insert(bot.PathableTargets, ent) end
 		end]]
 
-		--[[for _, ent in pairs(ents.FindByClass("prop_obj_sigil")) do
+		--[[for _, ent in ipairs(ents.FindByClass("prop_obj_sigil")) do
 			if not ent:GetSigilCorrupted() then table.insert(bot.PathableTargets, ent) end
 		end]]
 
@@ -575,21 +575,21 @@ end
 concommand.Add("createnavmesh", function(sender, command, arguments)
 	if sender:IsSuperAdmin() and not game.IsDedicated() then
 		if sender:GetObserverMode() == OBS_MODE_NONE and sender:IsOnGround() and sender:OnGround() then
-			for _, ent in pairs(ents.FindByClass("func_door*")) do
+			for _, ent in ipairs(ents.FindByClass("func_door*")) do
 				ent:Fire("open", "", 0)
 				ent:Fire("kill", "", 1)
 			end
-			for _, ent in pairs(ents.FindByClass("prop_door*")) do
+			for _, ent in ipairs(ents.FindByClass("prop_door*")) do
 				ent:Fire("open", "", 0)
 				ent:Fire("kill", "", 1)
 			end
-			for _, ent in pairs(ents.FindByClass("prop_physics*")) do
+			for _, ent in ipairs(ents.FindByClass("prop_physics*")) do
 				ent:Remove()
 			end
-			for _, ent in pairs(ents.FindByClass("func_breakable")) do
+			for _, ent in ipairs(ents.FindByClass("func_breakable")) do
 				ent:Remove()
 			end
-			for _, ent in pairs(ents.FindByClass("func_physbox")) do
+			for _, ent in ipairs(ents.FindByClass("func_physbox")) do
 				ent:Remove()
 			end
 			local ent = ents.Create("info_player_start")

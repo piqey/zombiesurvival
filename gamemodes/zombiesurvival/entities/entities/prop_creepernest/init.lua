@@ -125,7 +125,7 @@ end
 
 function ENT:OnRemove()
 	if self.Destroyed and self:GetNestBuilt() then
-		for _, pl in pairs(team.GetPlayers(TEAM_UNDEAD)) do
+		for _, pl in ipairs(team.GetPlayers(TEAM_UNDEAD)) do
 			pl:CenterNotify(COLOR_RED, translate.ClientFormat(pl, "nest_destroyed", name))
 		end
 

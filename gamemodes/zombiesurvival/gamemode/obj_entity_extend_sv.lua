@@ -176,12 +176,12 @@ local function CheckItemCreated(self)
 	if not self:IsValid() or self.PlacedInMap then return end
 
 	local tab = {}
-	for _, ent in pairs(ents.FindByClass("prop_ammo")) do
+	for _, ent in ipairs(ents.FindByClass("prop_ammo")) do
 		if not ent.PlacedInMap then
 			table.insert(tab, ent)
 		end
 	end
-	for _, ent in pairs(ents.FindByClass("prop_weapon")) do
+	for _, ent in ipairs(ents.FindByClass("prop_weapon")) do
 		if not ent.PlacedInMap then
 			table.insert(tab, ent)
 		end
@@ -204,7 +204,7 @@ function meta:FireOutput(outpt, activator, caller, args)
 	if intab then
 		for key, tab in pairs(intab) do
 			local param = ((tab.args == "") and args) or tab.args
-			for __, subent in pairs(self:FindByNameHammer(tab.entityname, activator, caller)) do
+			for __, subent in ipairs(self:FindByNameHammer(tab.entityname, activator, caller)) do
 				local delay = tonumber(tab.delay)
 				if delay == nil or delay <= 0 then
 					subent:Input(tab.input, activator, caller, param)
@@ -232,7 +232,7 @@ end
 
 function meta:IsNailed()
 	if self:IsValid() and self.Nails then -- In case we're the world.
-		for _, nail in pairs(self.Nails) do
+		for _, nail in ipairs(self.Nails) do
 			if nail and nail:IsValid() and (nail:GetAttachEntity() == self or nail:GetBaseEntity() == self) then
 				return true
 			end
@@ -244,7 +244,7 @@ end
 
 function meta:IsNailedToWorld(hierarchy)
 	if self:IsNailed() then
-		for _, nail in pairs(self.Nails) do
+		for _, nail in ipairs(self.Nails) do
 			if nail:GetAttachEntity():IsWorld() then
 				return true
 			end
@@ -339,7 +339,7 @@ function meta:GetPropsInContraption()
 end
 
 function meta:HumanNearby()
-	for _, pl in pairs(team.GetPlayers(TEAM_HUMAN)) do
+	for _, pl in ipairs(team.GetPlayers(TEAM_HUMAN)) do
 		if pl:Alive() and self:GetPos():DistToSqr(pl:GetPos()) <= 262144 then -- 512^2
 			return true
 		end
@@ -464,7 +464,7 @@ function meta:DamageNails(attacker, inflictor, damage, dmginfo)
 			end
 		end
 
-		for _, nail in pairs(nails) do
+		for _, nail in ipairs(nails) do
 			self:RemoveNail(nail, nil, nil, true)
 		end
 	end
@@ -476,7 +476,7 @@ function meta:GetNails()
 	local tab = {}
 
 	if self.Nails then
-		for _, nail in pairs(self.Nails) do
+		for _, nail in ipairs(self.Nails) do
 			if nail and nail:IsValid() then
 				table.insert(tab, nail)
 			end
@@ -490,7 +490,7 @@ function meta:GetLivingNails()
 	local tab = {}
 
 	if self.Nails then
-		for _, nail in pairs(self.Nails) do
+		for _, nail in ipairs(self.Nails) do
 			if nail and nail:IsValid() and nail:GetNailHealth() > 0 then
 				table.insert(tab, nail)
 			end
@@ -504,7 +504,7 @@ function meta:NumLivingNails()
 	local amount = 0
 
 	if self.Nails then
-		for _, nail in pairs(self.Nails) do
+		for _, nail in ipairs(self.Nails) do
 			if nail and nail:IsValid() and nail:GetNailHealth() > 0 then
 				amount = amount + 1
 			end
@@ -526,9 +526,9 @@ function meta:GetFirstNail()
 end
 
 local function GetNailOwner(nail, filter)
-	for _, ent in pairs(ents.GetAll()) do
+	for _, ent in ipairs(ents.GetAll()) do
 		if ent and ent ~= filter and ent.Nails and ent:IsValid() then
-			for __, n in pairs(ent.Nails) do
+			for __, n in ipairs(ent.Nails) do
 				if n == nail then
 					return ent
 				end
@@ -551,7 +551,7 @@ function meta:RemoveNail(nail, dontremoveentity, removedby, forceremoveconstrain
 	local cons = nail:GetNailConstraint()
 	local othernails = 0
 	if not forceremoveconstraint then
-		for _, othernail in pairs(ents.FindByClass("prop_nail")) do
+		for _, othernail in ipairs(ents.FindByClass("prop_nail")) do
 			if othernail ~= nail and not nail.m_IsRemoving and othernail:GetNailConstraint():IsValid() and othernail:GetNailConstraint() == cons then
 				othernails = othernails + 1
 			end
@@ -622,7 +622,7 @@ end
 
 local function barricadetimer(self, timername)
 	if self:IsValid() then
-		for _, e in pairs(ents.FindInBox(self:WorldSpaceAABB())) do
+		for _, e in ipairs(ents.FindInBox(self:WorldSpaceAABB())) do
 			if e and e:IsValid() and e:IsPlayer() and e:Alive() then
 				return
 			end
@@ -637,7 +637,7 @@ end
 function meta:TemporaryBarricadeObject()
 	if self.IsBarricadeObject then return end
 
-	for _, e in pairs(ents.FindInBox(self:WorldSpaceAABB())) do
+	for _, e in ipairs(ents.FindInBox(self:WorldSpaceAABB())) do
 		if e and e:IsValid() and e:IsPlayer() and e:Alive() then
 			self.IsBarricadeObject = true
 			self:CollisionRulesChanged()
@@ -736,7 +736,7 @@ function meta:ProjectileTraceAhead(phys)
 		local tr2 = util.TraceLine(proj_trace)
 		local trs = {tr, tr2}
 
-		for _, trace in pairs(trs) do
+		for _, trace in ipairs(trs) do
 			if trace.Entity then
 				local ent = trace.Entity
 
@@ -757,7 +757,7 @@ timer.Create("CachedInvisibleEntities", 1, 0, function()
 	GAMEMODE.CachedInvisibleEntities = {}
 
 	local invisents = player.GetAll()
-	for _, ent in pairs(ents.GetAll()) do
+	for _, ent in ipairs(ents.GetAll()) do
 		if ent.IgnoreTraces or ent.NoBlockExplosions then
 			invisents[#invisents + 1] = ent
 		end

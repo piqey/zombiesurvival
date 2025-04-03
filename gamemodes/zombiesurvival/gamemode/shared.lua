@@ -173,7 +173,7 @@ GM.Food = {}
 function GM:RegisterFood()
 	self.Food = {}
 
-	for k, v in pairs(weapons.GetList()) do
+	for k, v in ipairs(weapons.GetList()) do
 		if v.Base == "weapon_zs_basefood" then
 			table.insert(self.Food, v.ClassName)
 		end
@@ -321,7 +321,7 @@ function GM:DynamicSpawnIsValidOld(zombie, humans, allplayers)
 		if not vtr.HitSky and not vtr.HitNoDraw then
 			local valid = true
 
-			for _, human in pairs(humans) do
+			for _, human in ipairs(humans) do
 				hpos = human:GetPos()
 				nearest = zombie:NearestPoint(hpos)
 				dist = SkewedDistance(hpos, nearest, 2.75) -- We make it so that the Z distance between a human and a zombie is skewed if the zombie is below the human.
@@ -350,7 +350,7 @@ function GM:GetDynamicSpawnsOld(pl)
 
 	local allplayers = player.GetAll()
 	local humans = team.GetPlayers(TEAM_HUMAN)
-	for _, zombie in pairs(team.GetPlayers(TEAM_UNDEAD)) do
+	for _, zombie in ipairs(team.GetPlayers(TEAM_UNDEAD)) do
 		if zombie ~= pl and self:DynamicSpawnIsValidOld(zombie, humans, allplayers) then
 			table.insert(tab, zombie)
 		end
@@ -410,7 +410,7 @@ function GM:DynamicSpawnIsValid(ent, humans, allplayers)
 
 	-- Check if too close to a human.
 	local nearest, dist
-	for _, human in pairs(humans) do
+	for _, human in ipairs(humans) do
 		nearest = human:NearestPoint(pos)
 		dist = SkewedDistance(nearest, pos, 2.75)
 		if dist <= required_distance then -- We make it so that the Z distance between a human and an ent is skewed if the ent is below the human.
@@ -445,7 +445,7 @@ function GM:GetDynamicSpawns(pl)
 	local tab = {}
 
 	local humans = team.GetPlayers(TEAM_HUMAN)
-	for _, nest in pairs(ents.FindByClass("prop_creepernest")) do
+	for _, nest in ipairs(ents.FindByClass("prop_creepernest")) do
 		if self:DynamicSpawnIsValid(nest, humans) then
 			table.insert(tab, nest)
 		end
@@ -683,19 +683,19 @@ function GM:GetTeamRallyGroups(teamid)
 	local plys = team.GetPlayers(teamid)
 	local plpos, group
 
-	for _, pl in pairs(plys) do
+	for _, pl in ipairs(plys) do
 		if not ingroup[pl] and pl:Alive() then
 			plpos = pl:GetPos()
 			group = {pl}
 
-			for __, otherpl in pairs(plys) do
+			for __, otherpl in ipairs(plys) do
 				if otherpl ~= pl and not ingroup[otherpl] and otherpl:Alive() and otherpl:GetPos():DistToSqr(plpos) <= FEAR_RANGE then
 					group[#group + 1] = otherpl
 				end
 			end
 
 			if #group * FEAR_PERINSTANCE >= RALLYPOINT_THRESHOLD then
-				for k, v in pairs(group) do
+				for k, v in ipairs(group) do
 					ingroup[v] = true
 				end
 				groups[#groups + 1] = group
@@ -709,7 +709,7 @@ end
 function GM:GetTeamRallyPoints(teamid)
 	local points = {}
 
-	for _, group in pairs(self:GetTeamRallyGroups(teamid)) do
+	for _, group in ipairs(self:GetTeamRallyGroups(teamid)) do
 		points[#points + 1] = {GetEpicenter(group), math.min(1, (#group * FEAR_PERINSTANCE - RALLYPOINT_THRESHOLD) / (1 - RALLYPOINT_THRESHOLD))}
 	end
 
@@ -726,7 +726,7 @@ function GM:GetTeamEpicentre(teamid, nocache)
 	local plys = team.GetPlayers(teamid)
 	local vVec = Vector(0, 0, 0)
 	local considered = 0
-	for _, pl in pairs(plys) do
+	for _, pl in ipairs(plys) do
 		if pl:Alive() and pl:GetAuraRange() == 2048 then
 			vVec = vVec + pl:GetPos()
 			considered = considered + 1
@@ -773,7 +773,7 @@ function GM:GetFearMeterPower(pos, teamid, ignore)
 
 	local power = 0
 
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if pl ~= ignore and PTeam(pl) == teamid and not pl:CallZombieFunction0("DoesntGiveFear") and pl:Alive() then
 			dist = pl:GetPos():DistToSqr(pos)
 			if dist <= FEAR_RANGE then

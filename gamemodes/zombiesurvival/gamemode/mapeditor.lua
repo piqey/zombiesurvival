@@ -210,13 +210,13 @@ function GM:LoadMapEditorFile()
 				end
 			end
 		else
-			for _, stuff in pairs(string.Explode(",", red)) do
+			for _, stuff in ipairs(string.Explode(",", red)) do
 				local expstuff = string.Explode(" ", stuff)
 				local ent = ents.Create(string.lower(expstuff[1]))
 				if ent:IsValid() then
 					ent:SetPos(Vector(tonumber(expstuff[2]), tonumber(expstuff[3]), tonumber(expstuff[4])))
 					for i=5, #expstuff do
-						local kv = string.Explode("§", expstuff[i])
+						local kv = string.Explode("ï¿½", expstuff[i])
 						ent:SetKeyValue(kv[1], kv[2])
 					end
 					ent:Spawn()
@@ -229,7 +229,7 @@ end
 
 function GM:SaveMapEditorFile()
 	local sav = {}
-	for _, ent in pairs(self.MapEditorEntities) do
+	for _, ent in ipairs(self.MapEditorEntities) do
 		if ent:IsValid() then
 			local enttab = {}
 			enttab.Class = ent:GetClass()

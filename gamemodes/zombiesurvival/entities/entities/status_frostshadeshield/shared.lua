@@ -13,7 +13,7 @@ function ENT:SetObjectHealth(health)
 
 			local owner = self:GetOwner()
 			local pos = self:LocalToWorld(self:OBBCenter())
-			for _, ent in pairs(util.BlastAlloc(self, owner, pos, 128)) do
+			for _, ent in ipairs(util.BlastAlloc(self, owner, pos, 128)) do
 				if ent:IsValidLivingPlayer() and gamemode.Call("PlayerShouldTakeDamage", ent, owner) and ent ~= owner then
 					ent:GiveStatus("frost", 7)
 					ent:AddLegDamageExt(18, owner, self, SLOWTYPE_COLD)

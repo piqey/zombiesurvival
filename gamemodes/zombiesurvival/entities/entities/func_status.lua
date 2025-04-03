@@ -29,7 +29,7 @@ function ENT:AcceptInput(name, caller, activator, arg)
 	elseif name == "attack" then
 		self:Fire("attack", "", self.TickTime)
 
-		for k,v in pairs(player.GetAll()) do
+		for k,v in ipairs(player.GetAll()) do
 			if v:IsValidLivingHuman() and v.StatusZone == self then
 				if not IsValid(v["status_" .. self.Status]) then
 					v:GiveStatus(self.Status, self.Duration)

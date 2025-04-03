@@ -23,7 +23,7 @@ hook.Add("PostDrawTranslucentRenderables", "DrawDamage", function()
 		cam.IgnoreZ(true)
 	end
 
-	for _, particle in pairs(Particles) do
+	for _, particle in ipairs(Particles) do
 		if particle and curtime < particle.DieTime then
 			local c = particle.Type == 1 and colprop or col
 

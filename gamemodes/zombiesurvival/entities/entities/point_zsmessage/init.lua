@@ -29,7 +29,7 @@ function ENT:AcceptInput(name, caller, activator, args)
 				GAMEMODE:CenterNotifyAll(TextColor, args, {CustomTime = self.DisplayTime})
 			end
 		elseif self.SendTo == -1 then
-			for _, pl in pairs(player.GetAll()) do
+			for _, pl in ipairs(player.GetAll()) do
 				if pl == activator or pl == caller then
 					if self.Position == "top" then
 						pl:TopNotify(TextColor, args, {CustomTime = self.DisplayTime})
@@ -40,7 +40,7 @@ function ENT:AcceptInput(name, caller, activator, args)
 				end
 			end
 		else
-			for _, pl in pairs(player.GetAll()) do
+			for _, pl in ipairs(player.GetAll()) do
 				if pl:Team() == self.SendTo then
 					if self.Position == "top" then
 						pl:TopNotify(TextColor, args, {CustomTime = self.DisplayTime})

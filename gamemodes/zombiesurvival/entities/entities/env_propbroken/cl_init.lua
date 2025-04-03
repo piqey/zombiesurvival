@@ -37,7 +37,7 @@ function ENT:Draw()
 
 	local emitter = ParticleEmitter(self:GetPos())
 	emitter:SetNearClip(16, 24)
-	for _, pos in pairs(self.ParticlePositions) do
+	for _, pos in ipairs(self.ParticlePositions) do
 		local particle = emitter:Add("effects/fire_cloud"..math.random(2), self:LocalToWorld(pos))
 		particle:SetDieTime(math.Rand(0.3, 0.4))
 		particle:SetGravity(Vector(math.random(-1, 1), math.random(-1, 1), math.random(3, 8)):GetNormal() * 300)

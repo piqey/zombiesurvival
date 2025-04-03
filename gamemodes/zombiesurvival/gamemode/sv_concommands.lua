@@ -318,7 +318,7 @@ concommand.Add("worthcheckout", function(sender, command, arguments)
 	local cost = 0
 	local hasalready = {}
 
-	for _, id in pairs(arguments) do
+	for _, id in ipairs(arguments) do
 		id = tonumber(id) or id
 
 		local tab = FindStartingItem(id)
@@ -332,7 +332,7 @@ concommand.Add("worthcheckout", function(sender, command, arguments)
 
 	hasalready = {}
 
-	for _, id in pairs(arguments) do
+	for _, id in ipairs(arguments) do
 		id = tonumber(id) or id
 
 		local tab = FindStartingItem(id)
@@ -593,7 +593,7 @@ end)
 concommand.Add("zs_shitmap_teleport_on", function(sender, command, arguments)
 	if not sender:IsSuperAdmin() then return end
 
-	for _, ent in pairs(ents.FindByClass("trigger_teleport")) do
+	for _, ent in ipairs(ents.FindByClass("trigger_teleport")) do
 		ent:Fire("enable", "", 0)
 	end
 end)
@@ -601,7 +601,7 @@ end)
 concommand.Add("zs_shitmap_teleport_off", function(sender, command, arguments)
 	if not sender:IsSuperAdmin() then return end
 
-	for _, ent in pairs(ents.FindByClass("trigger_teleport")) do
+	for _, ent in ipairs(ents.FindByClass("trigger_teleport")) do
 		ent:Fire("enable", "", 0)
 	end
 end)

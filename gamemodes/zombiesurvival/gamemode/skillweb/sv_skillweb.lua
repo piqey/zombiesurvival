@@ -243,7 +243,7 @@ function meta:SkillsRemort()
 
 	self:CenterNotify(COLOR_CYAN, translate.ClientFormat(self, "you_have_remorted_now_rl_x", rl))
 	self:CenterNotify(COLOR_YELLOW, translate.ClientFormat(self, "you_now_have_x_extra_sp", rl))
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if pl ~= self then
 			pl:CenterNotify(COLOR_CYAN, translate.ClientFormat(pl, "x_has_remorted_to_rl_y", myname, rl))
 		end

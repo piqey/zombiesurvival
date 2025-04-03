@@ -52,7 +52,7 @@ function SWEP:Think()
 	end
 
 	if SERVER then
-		for _, ent in pairs(ents.FindByClass("prop_drone*")) do
+		for _, ent in ipairs(ents.FindByClass("prop_drone*")) do
 			if ent:IsValid() and ent:GetObjectOwner() == self:GetOwner() then
 				return
 			end

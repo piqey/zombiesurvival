@@ -17,7 +17,7 @@ function ENT:Explode()
 	local owner = self:GetOwner()
 	local rad = 36
 
-	for _, ent in pairs(util.BlastAlloc(self, owner, pos + Vector(0, 0, rad), rad)) do
+	for _, ent in ipairs(util.BlastAlloc(self, owner, pos + Vector(0, 0, rad), rad)) do
 		if ent:IsValidLivingZombie() and gamemode.Call("PlayerShouldTakeDamage", ent, owner) and ent ~= owner then
 			ent:TakeSpecialDamage(self.Damage or 113.4, DMG_DROWN, owner, self, pos)
 			ent:AddLegDamageExt(18, owner, self, SLOWTYPE_COLD)

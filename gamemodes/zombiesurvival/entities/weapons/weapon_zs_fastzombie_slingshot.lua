@@ -75,7 +75,7 @@ function SWEP:Think()
 				local prehit = self.PreHit
 				if prehit then
 					local ins = true
-					for _, tr in pairs(traces) do
+					for _, tr in ipairs(traces) do
 						if tr.Entity == prehit.Entity then
 							ins = false
 							break

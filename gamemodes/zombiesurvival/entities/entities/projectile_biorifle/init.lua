@@ -75,7 +75,7 @@ function ENT:Explode()
 		local radius = 29
 
 		local function InflictInRadius(func)
-			for _, ent in pairs(util.BlastAlloc(source, owner, pos, radius * (owner.ExpDamageRadiusMul or 1))) do
+			for _, ent in ipairs(util.BlastAlloc(source, owner, pos, radius * (owner.ExpDamageRadiusMul or 1))) do
 				if ent:IsValidLivingPlayer() and gamemode.Call("PlayerShouldTakeDamage", ent, owner) then
 					func(ent)
 				end
@@ -88,7 +88,7 @@ function ENT:Explode()
 					ent.Corrosion = CurTime()
 				elseif type == 1 then
 					ent:Ignite(5)
-					for __, fire in pairs(ents.FindByClass("entityflame")) do
+					for __, fire in ipairs(ents.FindByClass("entityflame")) do
 						if fire:IsValid() and fire:GetParent() == ent then
 							fire:SetOwner(owner)
 							fire:SetPhysicsAttacker(owner)

@@ -57,7 +57,7 @@ function ENT:PhysicsUpdate(phys)
 		local tr2 = util.TraceLine(proj_trace)
 		local trs = {tr, tr2}
 
-		for _, trace in pairs(trs) do
+		for _, trace in ipairs(trs) do
 			if trace.Hit and not self.Touched[trace.Entity] then
 				local ent = trace.Entity
 

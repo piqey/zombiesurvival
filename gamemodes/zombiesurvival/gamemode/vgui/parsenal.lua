@@ -235,7 +235,7 @@ local function ItemPanelDoClick(self)
 		return
 	end
 
-	for _, v in pairs(self:GetParent():GetChildren()) do
+	for _, v in ipairs(self:GetParent():GetChildren()) do
 		v.On = false
 	end
 	self.On = true

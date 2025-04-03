@@ -56,7 +56,7 @@ local function DoFleshThrow(owner, self)
 	local aimang = owner:EyeAngles()
 	local ang
 
-	for k, spr in pairs(PoisonPattern) do
+	for k, spr in ipairs(PoisonPattern) do
 		if k == "BaseClass" then continue end
 
 		ang = Angle(aimang.p, aimang.y, aimang.r)

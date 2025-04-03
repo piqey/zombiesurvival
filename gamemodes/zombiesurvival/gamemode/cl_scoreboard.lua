@@ -198,7 +198,7 @@ function PANEL:RefreshScoreboard()
 		end
 	end
 
-	for _, pl in pairs(player.GetAllActive()) do
+	for _, pl in ipairs(player.GetAllActive()) do
 		self:CreatePlayerPanel(pl)
 	end
 end
@@ -405,7 +405,7 @@ function PANEL:RefreshPlayer()
 
 	local rlvlmod = math.floor((rlvl % 40) / 4)
 	local hcolor, hlvl = COLOR_GRAY, 0
-	for rlvlr, rcolor in pairs(GAMEMODE.RemortColors) do
+	for rlvlr, rcolor in ipairs(GAMEMODE.RemortColors) do
 		if rlvlmod >= rlvlr and rlvlr >= hlvl then
 			hlvl = rlvlr
 			hcolor = rcolor

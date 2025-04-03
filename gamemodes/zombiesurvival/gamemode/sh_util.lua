@@ -1,7 +1,7 @@
 function player.GetAllActive()
 	local t = {}
 
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if not pl:IsSpectator() then
 			t[#t + 1] = pl
 		end
@@ -13,7 +13,7 @@ end
 function player.GetAllSpectators()
 	local t = {}
 
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if pl:IsSpectator() then
 			t[#t + 1] = pl
 		end
@@ -191,7 +191,7 @@ end
 function util.BlastDamageEx(inflictor, attacker, epicenter, radius, damage, damagetype, taperfactor)
 	local basedmg = damage
 
-	for _, ent in pairs(ents.FindInSphere(epicenter, radius)) do
+	for _, ent in ipairs(ents.FindInSphere(epicenter, radius)) do
 		if ent:IsValid() then
 			local nearest = ent:NearestPoint(epicenter)
 			if TrueVisibleFilters(epicenter, nearest, inflictor, attacker, ent)
@@ -212,7 +212,7 @@ function util.BlastDamageExAlloc(inflictor, attacker, epicenter, radius, damage,
 	local dmg
 	local t = {}
 
-	for _, ent in pairs(ents.FindInSphere(epicenter, radius)) do
+	for _, ent in ipairs(ents.FindInSphere(epicenter, radius)) do
 		if ent:IsValid() then
 			local nearest = ent:NearestPoint(epicenter)
 			if TrueVisibleFilters(epicenter, nearest, inflictor, attacker, ent)
@@ -233,7 +233,7 @@ end
 function util.BlastAlloc(inflictor, attacker, epicenter, radius)
 	local t = {}
 
-	for _, ent in pairs(ents.FindInSphere(epicenter, radius)) do
+	for _, ent in ipairs(ents.FindInSphere(epicenter, radius)) do
 		if ent:IsValid() then
 			local nearest = ent:NearestPoint(epicenter)
 			if TrueVisibleFilters(epicenter, nearest, inflictor, attacker, ent)
@@ -250,7 +250,7 @@ end
 function util.FindValidInSphere(pos, radius)
 	local ret = {}
 
-	for _, ent in pairs(util.FindInSphere(pos, radius)) do
+	for _, ent in ipairs(util.FindInSphere(pos, radius)) do
 		if ent:IsValid() then
 			ret[#ret + 1] = ent
 		end
@@ -260,7 +260,7 @@ function util.FindValidInSphere(pos, radius)
 end
 
 function util.PoisonBlastDamage(inflictor, attacker, epicenter, radius, damage, noreduce, instant)
-	for _, ent in pairs(ents.FindInSphere(epicenter, radius)) do
+	for _, ent in ipairs(ents.FindInSphere(epicenter, radius)) do
 		if ent:IsValid() then
 			local nearest = ent:NearestPoint(epicenter)
 			if TrueVisibleFilters(epicenter, nearest, inflictor, attacker, ent)
@@ -298,7 +298,7 @@ function util.ToMinutesSecondsMilliseconds(seconds)
 end
 
 function util.RemoveAll(class)
-	for _, ent in pairs(ents.FindByClass(class)) do
+	for _, ent in ipairs(ents.FindByClass(class)) do
 		ent:Remove()
 	end
 end
@@ -410,7 +410,7 @@ function team.GetSpawnPointGrouped(teamid, dist)
 	local tab = {}
 	local spawns = team.GetSpawnPoint(teamid)
 
-	for _, spawn in pairs(spawns) do
+	for _, spawn in ipairs(spawns) do
 		if not TooNear(spawn, tab, dist) then
 			table.insert(tab, spawn)
 		end
@@ -438,7 +438,7 @@ function team.GetValidSpawnPoint(teamid)
 
 	local spawns = team.GetSpawnPoint(teamid)
 	if spawns then
-		for _, ent in pairs(spawns) do
+		for _, ent in ipairs(spawns) do
 			if ent:IsValid() and not ent.Disabled then
 				t[#t + 1] = ent
 			end

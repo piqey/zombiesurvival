@@ -65,7 +65,7 @@ GAMEMODE:AddNewRemantleBranch(SWEP, 1, "'Servitor' Pulse Rifle", "Refreshes zapp
 		local killer = self:GetOwner()
 
 		if killer:IsValid() then
-			for _,v in pairs(ents.FindByClass("prop_zapper*")) do
+			for _,v in ipairs(ents.FindByClass("prop_zapper*")) do
 				if v:GetObjectOwner() == killer then
 					v:SetNextZap(0)
 				end

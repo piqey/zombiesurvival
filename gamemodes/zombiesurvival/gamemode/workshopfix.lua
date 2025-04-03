@@ -20,7 +20,7 @@ local weaponspath = gmfoldername.."/entities/weapons/"
 -- ENTITIES
 local files, folders = file.Find(entitiespath.."*", "LUA")
 
-for _, filename in pairs(files) do
+for _, filename in ipairs(files) do
 	ENT = {}
 	ENT.Folder = entitiespath
 	ENT.FolderName = filename
@@ -30,7 +30,7 @@ for _, filename in pairs(files) do
 	scripted_ents.Register(ENT, string.StripExtension(filename))
 end
 
-for _, foldername in pairs(folders) do
+for _, foldername in ipairs(folders) do
 	ENT = {}
 	ENT.Folder = entitiespath..foldername
 	ENT.FolderName = foldername
@@ -57,7 +57,7 @@ end
 -- EFFECTS
 files, folders = file.Find(effectspath.."*", "LUA")
 
-for _, filename in pairs(files) do
+for _, filename in ipairs(files) do
 	if SERVER then
 		AddCSLuaFile(effectspath..filename)
 	end
@@ -72,7 +72,7 @@ for _, filename in pairs(files) do
 	end
 end
 
-for _, foldername in pairs(folders) do
+for _, foldername in ipairs(folders) do
 	if SERVER and file.Exists(effectspath..foldername.."/init.lua", "LUA") then
 		AddCSLuaFile(effectspath..foldername.."/init.lua")
 	end
@@ -91,7 +91,7 @@ end
 -- WEAPONS
 files, folders = file.Find(weaponspath.."*", "LUA")
 
-for _, filename in pairs(files) do
+for _, filename in ipairs(files) do
 	SWEP = {}
 	SWEP.Folder = weaponspath
 	SWEP.FolderName = filename
@@ -113,7 +113,7 @@ for _, filename in pairs(files) do
 	weapons.Register(SWEP, string.StripExtension(filename))
 end
 
-for _, foldername in pairs(folders) do
+for _, foldername in ipairs(folders) do
 	SWEP = {}
 	SWEP.Folder = weaponspath..foldername
 	SWEP.FolderName = foldername

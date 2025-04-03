@@ -221,47 +221,47 @@ function GM:AddResources()
 
 	resource.AddFile("particles/vman_explosion.pcf")
 
-	for _, filename in pairs(file.Find("materials/zombiesurvival/*.vmt", "GAME")) do
+	for _, filename in ipairs(file.Find("materials/zombiesurvival/*.vmt", "GAME")) do
 		resource.AddFile("materials/zombiesurvival/"..filename)
 	end
 
-	for _, filename in pairs(file.Find("materials/zombiesurvival/*.png", "GAME")) do
+	for _, filename in ipairs(file.Find("materials/zombiesurvival/*.png", "GAME")) do
 		resource.AddFile("materials/zombiesurvival/"..filename)
 	end
 
-	for _, filename in pairs(file.Find("materials/zombiesurvival/killicons/*.vmt", "GAME")) do
+	for _, filename in ipairs(file.Find("materials/zombiesurvival/killicons/*.vmt", "GAME")) do
 		resource.AddFile("materials/zombiesurvival/killicons/"..filename)
 	end
 
-	for _, filename in pairs(file.Find("materials/zombiesurvival/killicons/*.png", "GAME")) do
+	for _, filename in ipairs(file.Find("materials/zombiesurvival/killicons/*.png", "GAME")) do
 		resource.AddFile("materials/zombiesurvival/killicons/"..filename)
 	end
 
 	resource.AddFile("materials/zombiesurvival/filmgrain/filmgrain.vmt")
 	resource.AddFile("materials/zombiesurvival/filmgrain/filmgrain.vtf")
 
-	for _, filename in pairs(file.Find("sound/zombiesurvival/*.ogg", "GAME")) do
+	for _, filename in ipairs(file.Find("sound/zombiesurvival/*.ogg", "GAME")) do
 		resource.AddFile("sound/zombiesurvival/"..filename)
 	end
-	for _, filename in pairs(file.Find("sound/zombiesurvival/ui/*.ogg", "GAME")) do
+	for _, filename in ipairs(file.Find("sound/zombiesurvival/ui/*.ogg", "GAME")) do
 		resource.AddFile("sound/zombiesurvival/ui/"..filename)
 	end
-	for _, filename in pairs(file.Find("sound/zombiesurvival/*.wav", "GAME")) do
+	for _, filename in ipairs(file.Find("sound/zombiesurvival/*.wav", "GAME")) do
 		resource.AddFile("sound/zombiesurvival/"..filename)
 	end
-	for _, filename in pairs(file.Find("sound/zombiesurvival/*.mp3", "GAME")) do
+	for _, filename in ipairs(file.Find("sound/zombiesurvival/*.mp3", "GAME")) do
 		resource.AddFile("sound/zombiesurvival/"..filename)
 	end
 
 	local _____, dirs = file.Find("sound/zombiesurvival/beats/*", "GAME")
-	for _, dirname in pairs(dirs) do
-		for __, filename in pairs(file.Find("sound/zombiesurvival/beats/"..dirname.."/*.ogg", "GAME")) do
+	for _, dirname in ipairs(dirs) do
+		for __, filename in ipairs(file.Find("sound/zombiesurvival/beats/"..dirname.."/*.ogg", "GAME")) do
 			resource.AddFile("sound/zombiesurvival/beats/"..dirname.."/"..filename)
 		end
-		for __, filename in pairs(file.Find("sound/zombiesurvival/beats/"..dirname.."/*.wav", "GAME")) do
+		for __, filename in ipairs(file.Find("sound/zombiesurvival/beats/"..dirname.."/*.wav", "GAME")) do
 			resource.AddFile("sound/zombiesurvival/beats/"..dirname.."/"..filename)
 		end
-		for __, filename in pairs(file.Find("sound/zombiesurvival/beats/"..dirname.."/*.mp3", "GAME")) do
+		for __, filename in ipairs(file.Find("sound/zombiesurvival/beats/"..dirname.."/*.mp3", "GAME")) do
 			resource.AddFile("sound/zombiesurvival/beats/"..dirname.."/"..filename)
 		end
 	end
@@ -301,26 +301,26 @@ function GM:AddResources()
 
 	resource.AddFile("models/weapons/v_supershorty/v_supershorty.mdl")
 	resource.AddFile("models/weapons/w_supershorty.mdl")
-	for _, filename in pairs(file.Find("materials/weapons/v_supershorty/*.vmt", "GAME")) do
+	for _, filename in ipairs(file.Find("materials/weapons/v_supershorty/*.vmt", "GAME")) do
 		resource.AddFile("materials/weapons/v_supershorty/"..filename)
 	end
-	for _, filename in pairs(file.Find("materials/weapons/v_supershorty/*.vtf", "GAME")) do
+	for _, filename in ipairs(file.Find("materials/weapons/v_supershorty/*.vtf", "GAME")) do
 		resource.AddFile("materials/weapons/v_supershorty/"..filename)
 	end
-	for _, filename in pairs(file.Find("materials/weapons/w_supershorty/*.vmt", "GAME")) do
+	for _, filename in ipairs(file.Find("materials/weapons/w_supershorty/*.vmt", "GAME")) do
 		resource.AddFile("materials/weapons/w_supershorty/"..filename)
 	end
-	for _, filename in pairs(file.Find("materials/weapons/w_supershorty/*.vtf", "GAME")) do
+	for _, filename in ipairs(file.Find("materials/weapons/w_supershorty/*.vtf", "GAME")) do
 		resource.AddFile("materials/weapons/w_supershorty/"..filename)
 	end
-	for _, filename in pairs(file.Find("materials/weapons/survivor01_hands/*.vmt", "GAME")) do
+	for _, filename in ipairs(file.Find("materials/weapons/survivor01_hands/*.vmt", "GAME")) do
 		resource.AddFile("materials/weapons/survivor01_hands/"..filename)
 	end
-	for _, filename in pairs(file.Find("materials/weapons/survivor01_hands/*.vtf", "GAME")) do
+	for _, filename in ipairs(file.Find("materials/weapons/survivor01_hands/*.vtf", "GAME")) do
 		resource.AddFile("materials/weapons/survivor01_hands/"..filename)
 	end
 
-	for _, filename in pairs(file.Find("materials/models/weapons/v_pza/*.*", "GAME")) do
+	for _, filename in ipairs(file.Find("materials/models/weapons/v_pza/*.*", "GAME")) do
 		resource.AddFile("materials/models/weapons/v_pza/"..string.lower(filename))
 	end
 
@@ -600,7 +600,7 @@ function GM:SetupSpawnPoints()
 	end
 
 	-- Add all the old ZS spawns from GMod9.
-	for _, oldspawn in pairs(ents.FindByClass("gmod_player_start")) do
+	for _, oldspawn in ipairs(ents.FindByClass("gmod_player_start")) do
 		if oldspawn.BlueTeam then
 			table.insert(htab, oldspawn)
 		else
@@ -679,7 +679,7 @@ function GM:InitPostEntity()
 end
 
 function GM:SetupProps()
-	for _, ent in pairs(ents.FindByClass("prop_physics*")) do
+	for _, ent in ipairs(ents.FindByClass("prop_physics*")) do
 		local mdl = ent:GetModel()
 		if mdl then
 			mdl = string.lower(mdl)
@@ -759,7 +759,7 @@ function GM:ReplaceMapWeapons()
 		return
 	end
 
-	for _, ent in pairs(ents.FindByClass("weapon_*")) do
+	for _, ent in ipairs(ents.FindByClass("weapon_*")) do
 		local wepclass = ent:GetClass()
 		if wepclass ~= "weapon_map_base" then
 			if string.sub(wepclass, 1, 10) == "weapon_zs_" then
@@ -800,7 +800,7 @@ function GM:ReplaceMapAmmo()
 		util.RemoveAll("item_rpg_round")
 		util.RemoveAll("item_box_buckshot")
 
-		for _, e in pairs(ents.FindByModel("models/props_c17/oildrum001_explosive.mdl")) do
+		for _, e in ipairs(ents.FindByModel("models/props_c17/oildrum001_explosive.mdl")) do
 			if e:IsValid() and e:GetClass():sub(1, 12) == "prop_physics" then
 				e:Remove()
 			end
@@ -810,7 +810,7 @@ function GM:ReplaceMapAmmo()
 	end
 
 	for classname, ammotype in pairs(ammoreplacements) do
-		for _, ent in pairs(ents.FindByClass(classname)) do
+		for _, ent in ipairs(ents.FindByClass(classname)) do
 			local newent = ents.Create("prop_ammo")
 			if newent:IsValid() then
 				newent:SetAmmoType(ammotype)
@@ -837,7 +837,7 @@ function GM:CreateZombieGas()
 	local humanspawns = team.GetValidSpawnPoint(TEAM_HUMAN)
 	local zombiespawns = team.GetValidSpawnPoint(TEAM_UNDEAD)
 
-	for _, zombie_spawn in pairs(zombiespawns) do
+	for _, zombie_spawn in ipairs(zombiespawns) do
 		local gasses = ents.FindByClass("zombiegasses")
 		if 4 < #gasses then
 			return
@@ -852,7 +852,7 @@ function GM:CreateZombieGas()
 		local near = false
 
 		if not self.ZombieEscape then
-			for __, human_spawn in pairs(humanspawns) do
+			for __, human_spawn in ipairs(humanspawns) do
 				if human_spawn:IsValid() and human_spawn:GetPos():DistToSqr(spawnpos) < 90000 then
 					near = true
 					break
@@ -861,7 +861,7 @@ function GM:CreateZombieGas()
 		end
 
 		if not near then
-			for __, gas in pairs(gasses) do
+			for __, gas in ipairs(gasses) do
 				if gas:GetPos():DistToSqr(spawnpos) < 122500 then --350^2
 					near = true
 					break
@@ -918,7 +918,7 @@ function GM:PlayerSelectSpawn(pl)
 		elseif self.DynamicSpawning --[[and CurTime() >= self:GetWaveStart() + 1]] then -- If we're a bit in the wave then we can spawn on top of heavily dense groups with no humans looking at us.
 			if self:ShouldUseAlternateDynamicSpawn() then -- This system is used for zombie escape, classic mode, baby mode, etc.
 				-- If they're near a human, use position where they died.
-				for _, h in pairs(team.GetPlayers(TEAM_HUMAN)) do
+				for _, h in ipairs(team.GetPlayers(TEAM_HUMAN)) do
 					if h:GetPos():DistToSqr(epicenter or pl:GetPos()) < 1048576 then --1024^2
 						epicenter = pl.KilledPos
 						break
@@ -973,13 +973,13 @@ function GM:PlayerSelectSpawn(pl)
 		local potential = {}
 
 		-- Filter out spawns that are disabled or blocked.
-		for _, spawn in pairs(tab) do
+		for _, spawn in ipairs(tab) do
 			if spawn:IsValid() and not spawn.Disabled and (spawn:IsPlayer() or spawn ~= LastSpawnPoints[teamid] or #tab == 1) and spawn:IsInWorld() then
 				local blocked
 
 				if not self.ObjectiveMap or teamid == TEAM_UNDEAD then
 					local spawnpos = spawn:GetPos()
-					for _, ent in pairs(ents.FindInBox(spawnpos + playermins, spawnpos + playermaxs)) do
+					for _, ent in ipairs(ents.FindInBox(spawnpos + playermins, spawnpos + playermaxs)) do
 						if not spawninplayer and IsValid(ent) and ent:IsPlayer() or string.sub(ent:GetClass(), 1, 5) == "prop_" then
 							blocked = true
 							break
@@ -1111,7 +1111,7 @@ function GM:SortZombieSpawnDistances(allplayers)
 	end
 
 	local maxdist = 1280000000--12800000
-	for _, pl in pairs(allplayers) do
+	for _, pl in ipairs(allplayers) do
 		if pl:Team() == TEAM_UNDEAD then
 			pl._ZombieSpawnDistance = sortbysigils and maxdist + 2 or -2
 		elseif pl:GetInfo("zs_alwaysvolunteer") == "1" then
@@ -1119,7 +1119,7 @@ function GM:SortZombieSpawnDistances(allplayers)
 		elseif CLIENT or pl.LastNotAFK and CurTime() <= pl.LastNotAFK + 60 then
 			plpos = pl:GetPos()
 			dist = maxdist
-			for __, ent in pairs(zspawns) do
+			for __, ent in ipairs(zspawns) do
 				dist = math.min(dist, ent:NearestPoint(plpos):DistToSqr(plpos))
 			end
 			pl._ZombieSpawnDistance = dist
@@ -1180,7 +1180,7 @@ function GM:Think()
 
 	local allplayers = player_GetAll()
 
-	for _, pl in pairs(allplayers) do
+	for _, pl in ipairs(allplayers) do
 		if pl.ShouldFlinch then
 			pl.ShouldFlinch = nil
 			--pl:Flinch()
@@ -1211,7 +1211,7 @@ function GM:Think()
 		local plpos
 
 		if wave == 0 and not self:GetWaveActive() then
-			for _, pl in pairs(allplayers) do
+			for _, pl in ipairs(allplayers) do
 				if P_Team(pl) == TEAM_HUMAN then
 					plpos = pl:GetPos()
 					if pl.LastAFKPosition and (pl.LastAFKPosition.x ~= plpos.x or pl.LastAFKPosition.y ~= plpos.y) then
@@ -1222,7 +1222,7 @@ function GM:Think()
 			end
 		end
 
-		for _, pl in pairs(allplayers) do
+		for _, pl in ipairs(allplayers) do
 			if P_Team(pl) == TEAM_HUMAN and P_Alive(pl) then
 				plpos = pl:GetPos()
 				if doafk then
@@ -1319,7 +1319,7 @@ function GM:Think()
 		end
 
 		if self:GetEscapeStage() == ESCAPESTAGE_DEATH then
-			for _, pl in pairs(allplayers) do
+			for _, pl in ipairs(allplayers) do
 				if P_Team(pl) == TEAM_HUMAN then
 					pl:TakeSpecialDamage(15, DMG_ACID)
 				end
@@ -1364,7 +1364,7 @@ end
 GM.LastCalculatedBossTime = 0
 function GM:CalculateNextBoss()
 	local zombies = {}
-	for _, ent in pairs(team.GetPlayers(TEAM_UNDEAD)) do
+	for _, ent in ipairs(team.GetPlayers(TEAM_UNDEAD)) do
 		if ent:GetInfo("zs_nobosspick") == "0" and not ent:GetZombieClassTable().Boss then
 			table.insert(zombies, ent)
 		end
@@ -1402,7 +1402,7 @@ function GM:CalculateInfliction(victim, attacker)
 	local humans = 0
 	local wonhumans = 0
 	local hum
-	for _, pl in pairs(player.GetAllActive()) do
+	for _, pl in ipairs(player.GetAllActive()) do
 		if not pl.Disconnecting then
 			if pl:Team() == TEAM_UNDEAD then
 				zombies = zombies + 1
@@ -1443,7 +1443,7 @@ function GM:CalculateInfliction(victim, attacker)
 			if v.Infliction and infliction >= v.Infliction and not self:IsClassUnlocked(v.Name) then
 				v.Unlocked = true
 
-				for _, ent in pairs(ents.FindByClass("logic_classunlock")) do
+				for _, ent in ipairs(ents.FindByClass("logic_classunlock")) do
 					local classname = v.Name
 					if ent.Class == string.lower(classname) then
 						ent:Input("onclassunlocked", ent, ent, classname)
@@ -1456,7 +1456,7 @@ function GM:CalculateInfliction(victim, attacker)
 					net.WriteBool(v.Unlocked)
 					net.Broadcast()
 
-					for _, pl in pairs(player.GetAll()) do
+					for _, pl in ipairs(player.GetAll()) do
 						pl:CenterNotify(COLOR_RED, translate.ClientFormat(pl, "infliction_reached", v.Infliction * 100))
 						pl:CenterNotify(translate.ClientFormat(pl, "x_unlocked", translate.ClientGet(pl, v.TranslationName)))
 					end
@@ -1465,7 +1465,7 @@ function GM:CalculateInfliction(victim, attacker)
 		end
 	end
 
-	for _, ent in pairs(ents.FindByClass("logic_infliction")) do
+	for _, ent in ipairs(ents.FindByClass("logic_infliction")) do
 		if ent.Infliction <= infliction then
 			ent:Input("oninflictionreached", NULL, NULL, infliction)
 		end
@@ -1484,7 +1484,7 @@ function GM:LastHuman(pl)
 			net.WriteEntity(pl or NULL)
 		net.Broadcast()
 
-		for _, ent in pairs(ents.FindByClass("logic_infliction")) do
+		for _, ent in ipairs(ents.FindByClass("logic_infliction")) do
 			ent:Input("onlasthuman", pl, pl, pl and pl:IsValid() and pl:EntIndex() or -1)
 		end
 
@@ -1627,7 +1627,7 @@ function GM:LoadNextMap()
 end
 
 function GM:PreRestartRound()
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		pl:StripWeapons()
 		pl:Spectate(OBS_MODE_ROAMING)
 		pl:GodDisable()
@@ -1670,7 +1670,7 @@ function GM:RestartLua()
 	self.MaxAmmoPickups = nil
 	self.MaxFlashlightPickups = nil
 	self.WeaponRequiredForAmmo = nil
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		pl.AmmoPickups = nil
 		pl.WeaponPickups = nil
 	end
@@ -1710,7 +1710,7 @@ end
 
 -- I don't know.
 local function CheckBroken()
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		if pl:Alive() and (pl:Health() <= 0 or pl:GetObserverMode() ~= OBS_MODE_NONE or pl:OBBMaxs().x ~= 16) then
 			pl:SetObserverMode(OBS_MODE_NONE)
 			pl:UnSpectateAndSpawn()
@@ -1721,15 +1721,15 @@ end
 function GM:DoRestartGame()
 	self.RoundEnded = nil
 
-	for _, ent in pairs(ents.FindByClass("prop_weapon")) do
+	for _, ent in ipairs(ents.FindByClass("prop_weapon")) do
 		ent:Remove()
 	end
 
-	for _, ent in pairs(ents.FindByClass("prop_ammo")) do
+	for _, ent in ipairs(ents.FindByClass("prop_ammo")) do
 		ent:Remove()
 	end
 
-	for _, ent in pairs(ents.FindByClass("prop_invitem")) do
+	for _, ent in ipairs(ents.FindByClass("prop_invitem")) do
 		ent:Remove()
 	end
 
@@ -1752,7 +1752,7 @@ function GM:DoRestartGame()
 	game.CleanUpMap(false, self.CleanupFilter)
 	gamemode.Call("InitPostEntityMap")
 
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		pl:UnSpectateAndSpawn()
 		pl:GodDisable()
 		gamemode.Call("PlayerInitialSpawnRound", pl)
@@ -1765,7 +1765,7 @@ function GM:DoRestartGame()
 end
 
 function GM:RestartGame()
-	for _, pl in pairs(player.GetAll()) do
+	for _, pl in ipairs(player.GetAll()) do
 		pl:StripWeapons()
 		pl:StripAmmo()
 		pl:SetFrags(0)
@@ -1779,7 +1779,7 @@ function GM:RestartGame()
 		pl.DeathClass = nil
 	end
 
-	for _, ent in pairs(ents.FindByClass("prop_obj_sigil")) do
+	for _, ent in ipairs(ents.FindByClass("prop_obj_sigil")) do
 		ent:Remove()
 	end
 
@@ -1816,16 +1816,16 @@ function GM:InitPostEntityMap(fromze)
 	gamemode.Call("CreateZombieGas")
 	gamemode.Call("SetupProps")
 
-	for _, ent in pairs(ents.FindByClass("prop_ammo")) do ent.PlacedInMap = true end
-	for _, ent in pairs(ents.FindByClass("prop_weapon")) do ent.PlacedInMap = true end
-	for _, ent in pairs(ents.FindByClass("func_door_rotating")) do ent.NoTraceAttack = true end
-	for _, ent in pairs(ents.FindByClass("func_physbox")) do ent.IsPhysbox = true end
-	for _, ent in pairs(ents.FindByClass("func_physbox_multiplayer")) do
+	for _, ent in ipairs(ents.FindByClass("prop_ammo")) do ent.PlacedInMap = true end
+	for _, ent in ipairs(ents.FindByClass("prop_weapon")) do ent.PlacedInMap = true end
+	for _, ent in ipairs(ents.FindByClass("func_door_rotating")) do ent.NoTraceAttack = true end
+	for _, ent in ipairs(ents.FindByClass("func_physbox")) do ent.IsPhysbox = true end
+	for _, ent in ipairs(ents.FindByClass("func_physbox_multiplayer")) do
 		ent.IsPhysbox = true
 		ent.IgnoreZEProtect = true
 	end
 
-	for _, ent in pairs(ents.FindByClass("item_*")) do ent.NoNails = true end
+	for _, ent in ipairs(ents.FindByClass("item_*")) do ent.NoNails = true end
 
 	if self.ObjectiveMap then
 		self:SetDynamicSpawning(false)
@@ -1909,7 +1909,7 @@ function GM:EndRound(winner)
 	if winner == TEAM_HUMAN then
 		self.LastHumanPosition = nil
 
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			if pl:Team() == TEAM_HUMAN then
 				if not self:GetUseSigils() then
 					gamemode.Call("OnPlayerWin", pl)
@@ -1923,7 +1923,7 @@ function GM:EndRound(winner)
 	elseif winner == TEAM_UNDEAD then
 		hook.Add("PlayerShouldTakeDamage", "EndRoundShouldTakeDamage", EndRoundPlayerCanSuicide)
 
-		for _, pl in pairs(team.GetPlayers(TEAM_UNDEAD)) do
+		for _, pl in ipairs(team.GetPlayers(TEAM_UNDEAD)) do
 			gamemode.Call("OnPlayerLose", pl)
 		end
 	end
@@ -1937,11 +1937,11 @@ function GM:EndRound(winner)
 		winner == TEAM_HUMAN and "Wins" or ("LossWave"..self:GetWave()), game.GetMap(), 1)
 
 	if winner == TEAM_HUMAN then
-		for _, ent in pairs(ents.FindByClass("logic_winlose")) do
+		for _, ent in ipairs(ents.FindByClass("logic_winlose")) do
 			ent:Input("onwin")
 		end
 	else
-		for _, ent in pairs(ents.FindByClass("logic_winlose")) do
+		for _, ent in ipairs(ents.FindByClass("logic_winlose")) do
 			ent:Input("onlose")
 		end
 	end
@@ -2090,12 +2090,12 @@ function GM:AttemptHumanDynamicSpawn(pl)
 	for i=1, #groups do
 		group = groups[i]
 
-		for _, otherpl in pairs(group) do
+		for _, otherpl in ipairs(group) do
 			if otherpl ~= pl then
 				pos = otherpl:GetPos() + Vector(0, 0, 1)
 				if otherpl:Alive() and otherpl:GetMoveType() == MOVETYPE_WALK and not util.TraceHull({start = pos, endpos = pos + playerheight, mins = playermins, maxs = playermaxs, mask = MASK_SOLID, filter = allplayers}).Hit then
 					nearzombie = false
-					for __, ent in pairs(team.GetPlayers(TEAM_UNDEAD)) do
+					for __, ent in ipairs(team.GetPlayers(TEAM_UNDEAD)) do
 						if ent:Alive() and ent:GetPos():DistToSqr(pos) <= 65536 then --256^2
 							nearzombie = true
 						end
@@ -2322,7 +2322,7 @@ end
 -- Reevaluates a prop and its constraint system (or all props if no arguments) to determine if they should be frozen or not from nails.
 function GM:EvaluatePropFreeze(ent, neighbors)
 	if not ent then
-		for _, e in pairs(ents.GetAll()) do
+		for _, e in ipairs(ents.GetAll()) do
 			if e and e:IsValid() then
 				self:EvaluatePropFreeze(e)
 			end
@@ -2342,7 +2342,7 @@ function GM:EvaluatePropFreeze(ent, neighbors)
 
 	local baseent, attachent
 
-	for _, nail in pairs(ent:GetNails()) do
+	for _, nail in ipairs(ent:GetNails()) do
 		if nail:IsValid() then
 			baseent = nail:GetBaseEntity()
 			attachent = nail:GetAttachEntity()
@@ -2412,7 +2412,7 @@ function GM:RemoveDuplicateAmmo(pl)
 	local AmmoCounts = {}
 	local WepAmmos = {}
 
-	for _, wep in pairs(pl:GetWeapons()) do
+	for _, wep in ipairs(pl:GetWeapons()) do
 		if wep.Primary then
 			local ammotype = wep:ValidPrimaryAmmo()
 			if ammotype and wep.Primary.DefaultClip > 0 then
@@ -2489,7 +2489,7 @@ function GM:GiveRandomEquipment(pl)
 	elseif GAMEMODE.OverrideStartingWorth then
 		pl:Give("weapon_zs_swissarmyknife")
 	elseif #self.StartLoadouts >= 1 then
-		for _, id in pairs(self.StartLoadouts[math.random(#self.StartLoadouts)]) do
+		for _, id in ipairs(self.StartLoadouts[math.random(#self.StartLoadouts)]) do
 			local tab = FindStartingItem(id)
 			if tab then
 				if tab.Callback then
@@ -2919,7 +2919,7 @@ function GM:EntityTakeDamage(ent, dmginfo)
 			local foundaxis = false
 			local entname = ent:GetName()
 			local allaxis = ents.FindByClass("phys_hinge")
-			for _, axis in pairs(allaxis) do
+			for _, axis in ipairs(allaxis) do
 				local keyvalues = axis:GetKeyValues()
 				if keyvalues.attach1 == entname or keyvalues.attach2 == entname then
 					foundaxis = true
@@ -3017,7 +3017,7 @@ function GM:OnPlayerChangedTeam(pl, oldteam, newteam)
 	end
 
 	pl:SetLastAttacker(nil)
-	for _, p in pairs(player.GetAll()) do
+	for _, p in ipairs(player.GetAll()) do
 		if p.LastAttacker == pl then
 			p.LastAttacker = nil
 		end
@@ -3049,7 +3049,7 @@ function GM:SetPantsMode(mode)
 		self.PreOverrideDefaultZombieClass = self.PreOverrideDefaultZombieClass or self.DefaultZombieClass
 		self.DefaultZombieClass = index
 
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			local classname = pl:GetZombieClassTable().Name
 			if classname ~= "Zombie Legs" and classname ~= "Crow" then
 				if pl:Team() == TEAM_UNDEAD then
@@ -3065,7 +3065,7 @@ function GM:SetPantsMode(mode)
 	else
 		self.DefaultZombieClass = self.PreOverrideDefaultZombieClass or self.DefaultZombieClass
 
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			if pl:GetZombieClassTable().Name == "Zombie Legs" then
 				self:SetToDefaultZombieClass(pl)
 			end
@@ -3088,7 +3088,7 @@ function GM:SetClassicMode(mode)
 		self.PreOverrideDefaultZombieClass = self.PreOverrideDefaultZombieClass or self.DefaultZombieClass
 		self.DefaultZombieClass = index
 
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			local classname = pl:GetZombieClassTable().Name
 			if classname ~= "Classic Zombie" and classname ~= "Crow" then
 				if pl:Team() == TEAM_UNDEAD then
@@ -3104,7 +3104,7 @@ function GM:SetClassicMode(mode)
 	else
 		self.DefaultZombieClass = self.PreOverrideDefaultZombieClass or self.DefaultZombieClass
 
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			if pl:GetZombieClassTable().Name == "Classic Zombie" then
 				self:SetToDefaultZombieClass(pl)
 			end
@@ -3125,7 +3125,7 @@ function GM:SetBabyMode(mode)
 		self.PreOverrideDefaultZombieClass = self.PreOverrideDefaultZombieClass or self.DefaultZombieClass
 		self.DefaultZombieClass = index
 
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			local classname = pl:GetZombieClassTable().Name
 			if classname ~= "Gore Child" and classname ~= "Giga Gore Child" and classname ~= "Crow" then
 				if pl:Team() == TEAM_UNDEAD then
@@ -3141,7 +3141,7 @@ function GM:SetBabyMode(mode)
 	else
 		self.DefaultZombieClass = self.PreOverrideDefaultZombieClass or self.DefaultZombieClass
 
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			if pl:GetZombieClassTable().Name == "Gore Child" then
 				self:SetToDefaultZombieClass(pl)
 			end
@@ -3160,7 +3160,7 @@ function GM:SetClosestsToZombie()
 	self:SortZombieSpawnDistances(allplayers)
 
 	local zombies = {}
-	for _, pl in pairs(allplayers) do
+	for _, pl in ipairs(allplayers) do
 		if pl:Team() ~= TEAM_HUMAN or not pl:Alive() then
 			table.insert(zombies, pl)
 		end
@@ -3169,7 +3169,7 @@ function GM:SetClosestsToZombie()
 	-- Need to place some people back on the human team.
 	if #zombies > desiredzombies then
 		local toswap = #zombies - desiredzombies
-		for _, pl in pairs(zombies) do
+		for _, pl in ipairs(zombies) do
 			if pl.DiedDuringWave0 and pl:GetInfo("zs_alwaysvolunteer") ~= "1" and not pl.IsZSBot then
 				pl:ChangeTeam(TEAM_HUMAN)
 				pl:UnSpectateAndSpawn()
@@ -3318,7 +3318,7 @@ function GM:GetNearestSpawn(pos, teamid)
 	local nearest = NULL
 
 	local nearestdist = math.huge
-	for _, ent in pairs(team.GetValidSpawnPoint(teamid)) do
+	for _, ent in ipairs(team.GetValidSpawnPoint(teamid)) do
 		if ent.Disabled then continue end
 
 		local dist = ent:GetPos():DistToSqr(pos)
@@ -3402,7 +3402,7 @@ function GM:CanPlayerSuicide(pl)
 		if not IsValid(pl:GetLastAttacker()) then
 			local plpos = pl:EyePos()
 			local tosort = {}
-			for _, zom in pairs(team.GetPlayers(TEAM_UNDEAD)) do
+			for _, zom in ipairs(team.GetPlayers(TEAM_UNDEAD)) do
 				if zom:Alive() then
 					local dist = zom:GetPos():DistToSqr(plpos)
 					if dist <= 262144 then --512^2
@@ -3507,7 +3507,7 @@ function GM:ZombieKilledHuman(pl, attacker, inflictor, dmginfo, headshot, suicid
 	local plpos = pl:GetPos()
 	local dist = 999999999
 	local xp = 18 * (GAMEMODE.ZombieXPMulti or 1)
-	for _, ent in pairs(team.GetValidSpawnPoint(TEAM_UNDEAD)) do
+	for _, ent in ipairs(team.GetValidSpawnPoint(TEAM_UNDEAD)) do
 		dist = math.min(ent:GetPos():DistToSqr(plpos), dist)
 	end
 	pl.ZombieSpawnDeathDistance = math.ceil(math.sqrt(dist))
@@ -4074,7 +4074,7 @@ function GM:SetWave(wave)
 				table.insert(UnlockedClasses, classid)
 			end
 
-			for _, ent in pairs(ents.FindByClass("logic_classunlock")) do
+			for _, ent in ipairs(ents.FindByClass("logic_classunlock")) do
 				local classname = GAMEMODE.ZombieClasses[classid].Name
 				if ent.Class == string.lower(classname) then
 					ent:Input("onclassunlocked", ent, ent, classname)
@@ -4089,9 +4089,9 @@ function GM:SetWave(wave)
 	end
 
 	if #UnlockedClasses > 0 then
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			local classnames = {}
-			for __, classid in pairs(UnlockedClasses) do
+			for __, classid in ipairs(UnlockedClasses) do
 				local classtbl = self.ZombieClasses[classid]
 
 				table.insert(classnames, translate.ClientGet(pl, classtbl.TranslationName))
@@ -4112,13 +4112,13 @@ function GM:WaveStateChanged(newstate)
 			self:SetClosestsToZombie()
 
 			local humans = {}
-			for _, pl in pairs(player.GetAll()) do
+			for _, pl in ipairs(player.GetAll()) do
 				if pl:Team() == TEAM_HUMAN and pl:Alive() then
 					table.insert(humans, pl)
 				end
 			end
 
-			for _, pl in pairs(humans) do
+			for _, pl in ipairs(humans) do
 				if pl.PlayerReady then -- There's a chance they might not be ready to send their desired cart yet.
 					gamemode.Call("GiveDefaultOrRandomEquipment", pl)
 				end
@@ -4127,7 +4127,7 @@ function GM:WaveStateChanged(newstate)
 			-- We should spawn a crate in a random spawn point if no one has any.
 			if not self.ZombieEscape and #ents.FindByClass("prop_arsenalcrate") == 0 then
 				local have = false
-				for _, pl in pairs(humans) do
+				for _, pl in ipairs(humans) do
 					if pl:HasWeapon("weapon_zs_arsenalcrate") then
 						have = true
 						break
@@ -4168,7 +4168,7 @@ function GM:WaveStateChanged(newstate)
 			net.WriteFloat(self:GetWaveEnd())
 		net.Broadcast()
 
-		for _, pl in pairs(team.GetPlayers(TEAM_UNDEAD)) do
+		for _, pl in ipairs(team.GetPlayers(TEAM_UNDEAD)) do
 			pl.m_LastWaveStartSpawn = CurTime()
 
 			if pl:GetZombieClassTable().Name == "Crow" then
@@ -4179,18 +4179,18 @@ function GM:WaveStateChanged(newstate)
 			end
 		end
 
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			pl.WaveBarricadeDamage = 0
 			pl.WaveHumanDamage = 0
 		end
 
 		local curwave = self:GetWave()
-		for _, ent in pairs(ents.FindByClass("logic_waves")) do
+		for _, ent in ipairs(ents.FindByClass("logic_waves")) do
 			if ent.Wave == curwave or ent.Wave == -1 then
 				ent:Input("onwavestart", ent, ent, curwave)
 			end
 		end
-		for _, ent in pairs(ents.FindByClass("logic_wavestart")) do
+		for _, ent in ipairs(ents.FindByClass("logic_wavestart")) do
 			if ent.Wave == curwave or ent.Wave == -1 then
 				ent:Input("onwavestart", ent, ent, curwave)
 			end
@@ -4211,7 +4211,7 @@ function GM:WaveStateChanged(newstate)
 				-- Start spawning boss zombies.
 			elseif self:GetEscapeStage() == ESCAPESTAGE_NONE then
 				-- If we're using sigils, remove them all and spawn the doors.
-				for _, sigil in pairs(ents.FindByClass("prop_obj_sigil")) do
+				for _, sigil in ipairs(ents.FindByClass("prop_obj_sigil")) do
 					local ent = ents.Create("prop_obj_exit")
 					if ent:IsValid() then
 						ent:SetPos(sigil.NodePos or sigil:GetPos())
@@ -4228,12 +4228,12 @@ function GM:WaveStateChanged(newstate)
 				self:SetEscapeStage(ESCAPESTAGE_ESCAPE)
 
 				local curwave = self:GetWave()
-				for _, ent in pairs(ents.FindByClass("logic_waves")) do
+				for _, ent in ipairs(ents.FindByClass("logic_waves")) do
 					if ent.Wave == curwave or ent.Wave == -1 then
 						ent:Input("onwaveend", ent, ent, curwave)
 					end
 				end
-				for _, ent in pairs(ents.FindByClass("logic_waveend")) do
+				for _, ent in ipairs(ents.FindByClass("logic_waveend")) do
 					if ent.Wave == curwave or ent.Wave == -1 then
 						ent:Input("onwaveend", ent, ent, curwave)
 					end
@@ -4244,12 +4244,12 @@ function GM:WaveStateChanged(newstate)
 			gamemode.Call("EndRound", TEAM_HUMAN)
 
 			local curwave = self:GetWave()
-			for _, ent in pairs(ents.FindByClass("logic_waves")) do
+			for _, ent in ipairs(ents.FindByClass("logic_waves")) do
 				if ent.Wave == curwave or ent.Wave == -1 then
 					ent:Input("onwaveend", ent, ent, curwave)
 				end
 			end
-			for _, ent in pairs(ents.FindByClass("logic_waveend")) do
+			for _, ent in ipairs(ents.FindByClass("logic_waveend")) do
 				if ent.Wave == curwave or ent.Wave == -1 then
 					ent:Input("onwaveend", ent, ent, curwave)
 				end
@@ -4268,7 +4268,7 @@ function GM:WaveStateChanged(newstate)
 			pointsbonus = self.EndWavePointsBonus + (self:GetWave() - 1) * self.EndWavePointsBonusPerWave
 		end
 
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			if pl:Team() == TEAM_HUMAN and pl:Alive() then
 				if self.EndWaveHealthBonus > 0 then
 					pl:SetHealth(math.min(pl:GetMaxHealth(), pl:Health() + self.EndWaveHealthBonus))
@@ -4296,12 +4296,12 @@ function GM:WaveStateChanged(newstate)
 		end
 
 		local curwave = self:GetWave()
-		for _, ent in pairs(ents.FindByClass("logic_waves")) do
+		for _, ent in ipairs(ents.FindByClass("logic_waves")) do
 			if ent.Wave == curwave or ent.Wave == -1 then
 				ent:Input("onwaveend", ent, ent, curwave)
 			end
 		end
-		for _, ent in pairs(ents.FindByClass("logic_waveend")) do
+		for _, ent in ipairs(ents.FindByClass("logic_waveend")) do
 			if ent.Wave == curwave or ent.Wave == -1 then
 				ent:Input("onwaveend", ent, ent, curwave)
 			end

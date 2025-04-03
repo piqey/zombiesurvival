@@ -131,7 +131,7 @@ function PANEL:Init()
 
 	self.StatusPanels = {}
 
-	for _, statusdisp in pairs(statusdisplays) do
+	for _, statusdisp in ipairs(statusdisplays) do
 		status = vgui.Create("ZSStatus", self)
 		status:SetAlpha(240)
 		status:SetColor(statusdisp.Color)
@@ -150,7 +150,7 @@ end
 
 function PANEL:PerformLayout()
 	local w = 0
-	for _, child in pairs(self:GetChildren()) do
+	for _, child in ipairs(self:GetChildren()) do
 		w = w + child:GetWide()
 	end
 
@@ -163,7 +163,7 @@ end
 function PANEL:Think()
 	local lp = LocalPlayer()
 	if lp:IsValid() then
-		for _, panel in pairs(self.StatusPanels) do
+		for _, panel in ipairs(self.StatusPanels) do
 			panel:StatusThink(lp)
 		end
 	end

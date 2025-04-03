@@ -117,7 +117,7 @@ function SWEP:Swung()
 	local prehit = self.PreHit
 	if prehit then
 		local ins = true
-		for _, tr in pairs(traces) do
+		for _, tr in ipairs(traces) do
 			if tr.HitNonWorld then
 				ins = false
 				break

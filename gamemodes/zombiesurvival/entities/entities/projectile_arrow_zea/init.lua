@@ -43,7 +43,7 @@ function ENT:Explode(hitpos, hitnormal)
 		end
 
 		if math.random(3) == 1 then
-			for _, pl in pairs(util.BlastAlloc(source, owner, hitpos, 60)) do
+			for _, pl in ipairs(util.BlastAlloc(source, owner, hitpos, 60)) do
 				if pl:IsValidLivingPlayer() and gamemode.Call("PlayerShouldTakeDamage", pl, owner) then
 					local status = pl:GiveStatus("shockdebuff")
 					status.DieTime = CurTime() + 7

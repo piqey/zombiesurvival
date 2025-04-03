@@ -67,7 +67,7 @@ if SERVER then
 	end
 
 	function PrintTranslatedMessage(printtype, str, ...)
-		for _, pl in pairs(player.GetAll()) do
+		for _, pl in ipairs(player.GetAll()) do
 			pl:PrintMessage(printtype, translate.ClientFormat(pl, str, ...))
 		end
 	end
@@ -82,7 +82,7 @@ if CLIENT then
 	end
 end
 
-for i, filename in pairs(file.Find(GM.FolderName.."/gamemode/languages/*.lua", "LUA")) do
+for i, filename in ipairs(file.Find(GM.FolderName.."/gamemode/languages/*.lua", "LUA")) do
 	LANGUAGE = {}
 	AddCSLuaFile("languages/"..filename)
 	include("languages/"..filename)

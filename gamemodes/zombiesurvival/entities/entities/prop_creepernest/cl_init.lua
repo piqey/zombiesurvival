@@ -47,7 +47,7 @@ function ENT:Think()
 	if MySelf:IsValid() and MySelf:Team() == TEAM_UNDEAD then
 		local blocked = false
 		local nearest = self:GetPos()
-		for _, human in pairs(team.GetPlayers(TEAM_HUMAN)) do
+		for _, human in ipairs(team.GetPlayers(TEAM_HUMAN)) do
 			if util.SkewedDistance(human:GetPos(), nearest, 2.75) <= GAMEMODE.CreeperNestDist then
 				blocked = true
 				break

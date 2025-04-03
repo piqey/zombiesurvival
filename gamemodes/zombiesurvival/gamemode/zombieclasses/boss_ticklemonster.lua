@@ -137,7 +137,7 @@ CLASS.Icon = "zombiesurvival/killicons/tickle"
 local vecSpineOffset = Vector(8, 0, 0)
 local SpineBones = {"ValveBiped.Bip01_Spine2", "ValveBiped.Bip01_Spine4", "ValveBiped.Bip01_Spine3"}
 function CLASS:BuildBonePositions(pl)
-	for _, bone in pairs(SpineBones) do
+	for _, bone in ipairs(SpineBones) do
 		local spineid = pl:LookupBone(bone)
 		if spineid and spineid > 0 then
 			pl:ManipulateBonePosition(spineid, vecSpineOffset)

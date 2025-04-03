@@ -115,7 +115,7 @@ function ENT:DrawTranslucent()
 
 					if expert then
 						local rlvlmod, hlvl = math.floor((rlvl % 40) / 4), 0
-						for rlvlr, rcolor in pairs(GAMEMODE.RemortColors) do
+						for rlvlr, rcolor in ipairs(GAMEMODE.RemortColors) do
 							if rlvlmod >= rlvlr and rlvlr >= hlvl then
 								hlvl = rlvlr
 								hcolor = rcolor
